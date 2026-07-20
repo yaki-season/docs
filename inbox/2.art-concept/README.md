@@ -16,5 +16,8 @@
 - `15_prototype_customer_seating_flow.png`: 퇴근 직장인 2인 그룹과 혼술족 1인의 입장·개별 주문·대기·만족도·퇴장·좌석 정리 흐름
 - `16_first_business_day_storyboard.png`: 가게 상속부터 조리 튜토리얼, 정산과 다음 목표까지 첫 영업일 스토리보드
 - `17_threejs_interactable_asset_sheet.png`: 꼬치·석쇠·맥주잔·도구의 Three.js 제작을 위한 형태·재질·픽셀 셰이딩 기준표
+- `18_main_cast_character_lineup.png`: 주인공, 츠키오카, 직장인 A·B, 하루, 카나모리의 전신 실루엣·대표색·소품 비교
+- `19_key_character_acting_sheet.png`: 주인공, 츠키오카, 하루의 핵심 표정과 시나리오 행동 기준
+- `2026-07-20_주요_등장인물_캐릭터_컨셉_및_아트_기획_초안.md`: 주요 인물 설정, 관계, 복장 변화, 표정·동작과 제작 우선순위 초안
 
 > 이 폴더의 자료는 정제 전 원본과 시각 탐색안이다. 실제 구현 기준은 AI 파이프라인을 거쳐 `spec/`에 반영된 요구사항을 따른다.
