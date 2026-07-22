@@ -1,10 +1,10 @@
 # SYS-004 app 프로젝트와 소스코드 아키텍처
 
-- 문서 버전: `v1.0.0`
+- 문서 버전: `v2.0.0`
 - 최종 변경일: `2026-07-22`
 - 상태: `초안`
 - 담당 영역: `시스템`
-- 근거 inbox: `inbox/0.idea/YAKI SEASON 게임 기획서.md`, `inbox/1.design/rendering-interaction.md`, `inbox/1.design/performance.md`, `inbox/1.design/2026-07-20_야키토리_및_생맥주_직접조작_UX_시나리오_초안.md`, `inbox/99.change-request/2026-07-19_기획서_모순_검토_원본.md`
+- 근거 inbox: `inbox/0.idea/YAKI SEASON 게임 기획서.md`, `inbox/1.design/rendering-interaction.md`, `inbox/1.design/performance.md`, `inbox/1.design/2026-07-20_야키토리_및_생맥주_직접조작_UX_시나리오_초안.md`, `inbox/2.art-concept/03_main_service_gameplay_ui.png`, `inbox/2.art-concept/09_customer_waiting_and_cleanup.png`, `inbox/2.art-concept/14_responsive_ui_station_warning.png`, `inbox/99.change-request/2026-07-19_기획서_모순_검토_원본.md`
 - 원본 SHA-256: 아래 근거 원본 표 참조
 
 ## 근거 원본
@@ -15,6 +15,9 @@
 | `inbox/1.design/rendering-interaction.md` | `a99f0f795ab3bce19b9509a1e2e38ef57f90090ffe34b8dba945e69dd0369ec8` |
 | `inbox/1.design/performance.md` | `8166c3afd6bd3d50ceeafd5683c2ade29720cbfcb878c6c28fb4f79f40ddb238` |
 | `inbox/1.design/2026-07-20_야키토리_및_생맥주_직접조작_UX_시나리오_초안.md` | `9806c8abb3f0b3f067c2d25c2d0633e3bd7261bb21f8afd57f922dafd9a87f59` |
+| `inbox/2.art-concept/03_main_service_gameplay_ui.png` | `ee19d6c1d5edebe17c78c5ac1322471c24dfd1be8d43c081cc08b039f6cb17a9` |
+| `inbox/2.art-concept/09_customer_waiting_and_cleanup.png` | `f952c367580a656f838acce75150b6c3871755710d612aebbd23abe6e406f594` |
+| `inbox/2.art-concept/14_responsive_ui_station_warning.png` | `ecfe341e2904157209b9522187fed930dd99b549c35cc358863680a71dfe7547` |
 | `inbox/99.change-request/2026-07-19_기획서_모순_검토_원본.md` | `c15578ae95efe2a0e321489a34470a84a38f378e3c8ee069aef3bfb451cd26fb` |
 
 ## 현행 app 기준선
@@ -181,6 +184,7 @@ src/
 │       ├── renderer.ts
 │       ├── scene-root.ts
 │       ├── camera/
+│       ├── bar-counter/
 │       ├── stations/
 │       ├── objects/
 │       ├── materials/
@@ -385,19 +389,28 @@ PointerEvent
 |---|---|---|
 | `background` | 뒷벽·외부·선반 슬라이스 | 캠페인 시각 단계, 스테이션 |
 | `customers` | 좌석 손님·직원 스프라이트 | 손님·직원 render model |
-| `stations` | 조립대·그릴·드링크·카운터 | 스테이션 해금·업그레이드 |
+| `barCounter` | 고정 상판·주문 매트·전달 anchor | 좌석 tier, 화면 crop |
+| `stations` | 플레이어측 조립대·그릴·드링크·서빙 모듈 | 스테이션 해금·업그레이드 |
 | `interactives` | 꼬치·석쇠·잔·도구·접시 | 제작물·공정·선택 상태 |
 | `vfx` | 불씨·연기·기름·판정 | 단발 이벤트·화력 |
 | `foreground` | 목재·노렌·제등 프레임 | 화면·시각 단계 |
 
 59. `renderer.ts`는 WebGLRenderer 하나, Scene 하나와 rAF 하나만 소유한다.
-60. `SceneRoot`는 그룹 순서와 dispose를 관리하고 각 station controller는 자기 오브젝트와 interaction plane만 소유한다.
-61. `RenderSnapshot`은 엔티티 ID, 정규화 수치, 시각 상태와 `visualAnchorId`만 포함하며 도메인 객체를 그대로 전달하지 않는다.
+60. `SceneRoot`는 `background -> customers -> barCounter -> stations -> interactives -> vfx -> foreground` 그룹 순서와 dispose를 관리하고 각 station controller는 자기 오브젝트와 interaction plane만 소유한다.
+61. `RenderSnapshot`은 엔티티 ID, 정규화 수치, 시각 상태와 `visualAnchorId`만 포함하며 도메인 객체를 그대로 전달하지 않는다. `barCounter`와 좌석 tier는 화면 render model에서 분리해 스테이션 변경으로 제거되지 않게 한다.
 62. 오브젝트 레지스트리는 엔티티 ID를 Three.js 객체에 매핑하고 snapshot에서 사라진 객체를 풀로 반환한다.
-63. 카메라는 스테이션 프리셋만 사용하고 마지막 요청 하나로 수렴하는 `CameraController`가 0.25~0.45초 전환을 수행한다.
+63. 카메라는 바 안쪽 주인공 위치에서 카운터 너머 손님을 바라보는 스테이션 프리셋만 사용하고, 마지막 요청 하나로 수렴하는 `CameraController`가 카운터 선과 손님 방향을 보존하며 0.25~0.45초 전환을 수행한다.
 64. 판정 VFX, 오디오와 짧은 애니메이션은 event sequence를 소비하고 완료 콜백으로 도메인 상태를 변경하지 않는다.
 65. 리사이즈는 관찰자로 수집해 한 프레임에 한 번 적용하고 모바일 DPR 1.5, 데스크톱 DPR 2.0 상한을 둔다.
 66. 모든 geometry, material, texture, audio buffer는 소유 모듈이 dispose하며 장면 전환마다 재로딩하지 않는다.
+
+### 영업 장면 모듈 불변식
+
+- `bar-counter/`는 고정 상판, 손님 가림선, 주문 매트와 손님측·플레이어측 전달 anchor를 소유하며 station controller가 이를 생성·제거하지 않는다.
+- `customers`는 카운터 뒤 좌석 anchor를 사용하고, `stations`와 `interactives`는 카운터 앞 플레이어측 작업 bounds를 사용한다.
+- station controller는 활성 작업 모듈만 교체하며 배경·손님·고정 카운터 render model을 대체하지 않는다.
+- `CameraController`는 셰프측 preset만 등록하고 손님측에서 주방을 보거나 완전한 손님용 스툴이 전경에 놓이는 preset을 거부한다.
+- 서빙 tween은 플레이어측 작업 anchor, 고정 상판의 주문 매트, 손님측 도착 anchor를 잇는 `handoffPath`를 사용한다.
 
 ### 셰이더 이식
 
@@ -440,7 +453,7 @@ PointerEvent
 84. 단위 테스트는 실제 시간, `Math.random`, DOM과 WebGL을 사용하지 않는다.
 85. 테스트 fixture는 콘텐츠 ID와 저장 스키마 버전을 명시하고 프로덕션 콘텐츠 변경 시 검증한다.
 86. E2E는 포인터 한 개로 클릭 경로를 우선 검증하고 드래그·스와이프는 동일 결과 패리티를 확인한다.
-87. 시각 테스트는 캔버스 픽셀 비어 있음, 주요 anchor 크롭, DOM 겹침과 에셋 실패 화면을 함께 확인한다.
+87. 시각 테스트는 캔버스 픽셀 비어 있음, 주요 anchor 크롭, DOM 겹침과 에셋 실패 화면뿐 아니라 셰프측 카메라, 고정 카운터 연속성, 손님 가림선과 플레이어측 작업 bounds를 함께 확인한다.
 88. 기본 품질 게이트는 타입 검사, 정적 검사, 단위·콘텐츠 테스트, 프로덕션 빌드, E2E smoke와 `git diff --check`다.
 
 ## 빌드와 배포 계약
@@ -490,6 +503,7 @@ PointerEvent
 - [ ] 같은 입력열의 저장 전·후 도메인 결과와 경제 원장이 동일하다.
 - [ ] 콘텐츠 JSON의 스키마, 참조, D1~D31 연결과 asset/audio key를 빌드 전에 검증한다.
 - [ ] 단일 Three.js 렌더러가 snapshot을 그리며 도메인 규칙을 계산하지 않는다.
+- [ ] `SceneRoot`, `CameraController`와 station controller가 셰프측 시점·고정 카운터·손님측·플레이어측 불변식을 계약 테스트와 시각 테스트로 보장한다.
 - [ ] 기존 익힘 셰이더가 양면 상태를 받는 정식 material로 이식되고 시각 회귀를 통과한다.
 - [ ] S0~D1을 클릭·탭만으로 완료하고 영업 시작·정산 저장을 복구한다.
 - [ ] 러시 fixture에서 `SYS-003` 성능 예산과 `QA-002` 출시 게이트를 만족한다.
@@ -501,13 +515,13 @@ PointerEvent
 - `GPL-003` 주문·손님·좌석과 러시 운영 `v1.0.0`
 - `GPL-004` 조리 스테이션과 품질·서빙 `v1.0.0`
 - `GPL-005` 경제·성장·직원과 보상 `v1.0.0`
-- `UI-002` 전체 게임 화면·입력·접근성 `v1.0.0`
+- `UI-002` 전체 게임 화면·입력·접근성 `v2.0.0`
 - `SCN-002` 프롤로그와 30일 캠페인 시나리오 `v1.0.0`
-- `SYS-003` 전체 게임 런타임·저장·성능 `v1.0.0`
+- `SYS-003` 전체 게임 런타임·저장·성능 `v2.0.0`
 - `DAT-001` 콘텐츠와 밸런스 데이터 계약 `v1.0.0`
-- `ART-002` 전체 게임 비주얼·캐릭터·에셋 `v1.0.0`
+- `ART-002` 전체 게임 비주얼·캐릭터·에셋 `v2.0.0`
 - `AUD-001` 전체 게임 오디오와 피드백 `v1.0.0`
-- `QA-002` 전체 게임 기능·성능·출시 검증 `v1.0.0`
+- `QA-002` 전체 게임 기능·성능·출시 검증 `v1.1.0`
 
 ## 미해결 질문
 
@@ -523,3 +537,4 @@ PointerEvent
 | 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 inbox·지문 | 변경 내용 | epic 영향 |
 |---|---|---|---|---|---|---|
 | 없음 | `v1.0.0` | `2026-07-22` | 최초 생성 | GDD·렌더링·성능·UX·모순 검토 원본과 `app@970547b` | 정식 app 기술 스택, 디렉터리, 모듈 경계, 상태·이벤트·저장·콘텐츠·렌더링·테스트 설계 | epic·task 작성 없이 설계만 추가, 구현 전 별도 영향 분석 필요 |
+| `v1.0.0` | `v2.0.0` | `2026-07-22` | 핵심 장면 아키텍처 변경 | 영업 UI `ee19d6c1...17a9`, 대기·정리 `f952c367...f594`, 반응형 `ecfe341e...7547` 재검증 | `barCounter` 전용 모듈·그룹, 셰프측 카메라 제한, 손님측·플레이어측 anchor와 서빙 경로 계약 추가 | Artist 작업 003·008과 전체 게임 소스 구현·시각 테스트 범위 변경 |
