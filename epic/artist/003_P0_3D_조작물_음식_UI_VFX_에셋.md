@@ -1,6 +1,6 @@
 # Artist - 003 P0 3D 조작물·음식·UI·VFX 에셋
 
-- 문서 버전: `v2.0.0`
+- 문서 버전: `v2.0.1`
 - 최종 변경일: `2026-07-22`
 - 상태: `대기`
 - 담당자: `Artist`
@@ -50,9 +50,9 @@
 
 ## 의존성과 인계 조건
 
-- 선행 작업: Artist 작업 001 완료, 작업 002의 조명·소실점·anchor 기준 제공
+- 선행 작업: Artist 작업 001 완료, Artist 작업 002 `v2.0.1`에서 `BG-BAR-COUNTER-BASE`와 교정된 조명·소실점·`playerWorkBounds`·`handoffPath` 승인
 - 후속 작업: 개발자의 P0 Three.js 오브젝트·셰이더·HUD·VFX 연결, Artist 작업 007
-- 다른 역할에게 제공할 입력·출력: 개발자에게 GLB node·pivot·socket, texture 색 공간, atlas frame, UI glyph와 VFX cue별 runtime ID를 인계한다.
+- 다른 역할에게 제공할 입력·출력: 개발자에게 GLB node·pivot·socket, 고정 카운터 기준 장면 좌표, texture 색 공간, atlas frame, UI glyph와 VFX cue별 runtime ID를 인계한다.
 
 ## 완료 기준
 
@@ -70,10 +70,10 @@
 
 - app 구현 위치: 미구현. 예정 pack `app/public/assets/core/models/`, `textures/`, `ui/`, `vfx/`
 - 구현 기준 spec 버전: `ART-003 v2.0.0`, `GPL-004 v1.0.0`, `UI-002 v2.0.0`, `SYS-003 v2.0.0`, `SYS-004 v2.0.0`
-- 구현 기준 태스크 버전: `v2.0.0`
+- 구현 기준 태스크 버전: `v2.0.1`
 - 검증 방법: GLB 구조·triangle·texture·atlas 자동 검사와 실제 Three.js 합성 검수
 - 검증 결과: 미실행
-- 남은 위험: 단일 레버 생맥주 기본안이 변경되면 레버·잔 interaction metadata의 재작업이 필요하다.
+- 남은 위험: Artist 작업 002의 교정 좌표가 승인되기 전에는 제작을 시작할 수 없다. 단일 레버 생맥주 기본안이 변경되면 레버·잔 interaction metadata의 재작업이 필요하다.
 
 ## 변경 이력
 
@@ -81,3 +81,4 @@
 |---|---|---|---|---|---|---|
 | 없음 | `v1.0.0` | `2026-07-22` | 최초 생성 | `ART-003 v1.1.0` 및 조리·UI·시스템 spec | P0 3D 조작물·음식·UI·VFX 제작과 개발자 인계 작업 생성 | 없음 |
 | `v1.0.0` | `v2.0.0` | `2026-07-22` | 핵심 제작 좌표 변경 | `ART-003/UI-002/SYS-003/SYS-004 v2.0.0` | 모든 P0 3D 조작물과 VFX를 셰프측 카메라의 플레이어 작업 bounds 및 고정 카운터 전달 경로에 맞추도록 변경 | 작업 002의 교정 anchor 승인 뒤 제작 시작; 기존 좌표 가정 사용 금지 |
+| `v2.0.0` | `v2.0.1` | `2026-07-22` | 선행 승인 게이트 명확화 | 동일 | 작업 002 `v2.0.1`의 고정 카운터·작업 bounds·전달 경로 승인을 명시적 착수 조건과 인계 좌표로 고정 | 교정 좌표 승인 전 `대기` 유지 |
