@@ -44,7 +44,9 @@
 - `artist/`: 브랜드, 환경, 캐릭터, 3D 조작물, 음식, UI icon, VFX 제작과 에셋 manifest·개발자 카탈로그 관리
 - 경계가 겹치면 각자 독립적으로 완료 가능한 단위로 나누고 입출력 계약을 두 작업에 동일하게 기록한다.
 - `developer-1`의 게임 로직은 수치를 데이터에서 읽고, `developer-3`가 그 데이터 파일·검증·도구를 제공한다. 두 역할은 데이터 스키마(`DAT-001`)를 공통 계약으로 삼는다.
-- Artist는 `app/public/assets/manifest.json`과 `app/art/ASSET-CATALOG.md`를 에셋 변경과 같은 작업에서 갱신하고 개발자가 추측한 경로를 만들지 않게 한다.
+- Artist는 제작·검수 상태를 `art-workspace/ASSET-CATALOG.md`에 기록한다. 최종 runtime
+  승격은 `app`의 자동 게이트로만 수행하며 `app/public/assets/manifest.json`을 런타임
+  단일 원본으로 유지해 개발자가 추측한 경로를 만들지 않게 한다.
 
 ## 금지 사항
 

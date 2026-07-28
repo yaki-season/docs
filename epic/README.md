@@ -32,8 +32,12 @@
 
 ## Artist 인계 원칙
 
-- 승인된 런타임 파일은 `app/public/assets/` pack 아래에 둔다.
-- 편집 원본·검토본·출처는 `app/art/source/`, `app/art/review/`, `app/art/provenance/`로 분리한다.
-- 런타임 단일 원본은 `app/public/assets/manifest.json`, 개발자용 경로 인덱스는 `app/art/ASSET-CATALOG.md`다.
-- Artist는 에셋을 생성·수정·폐기한 같은 작업에서 두 인덱스를 갱신하고 실제 파일·해시·상태와 자동 대조한다.
+- 편집 원본·검토본·출처·증빙은 비Git 로컬 작업공간
+  `art-workspace/source/`, `art-workspace/review/`, `art-workspace/provenance/`,
+  `art-workspace/evidence/`로 분리한다.
+- 제작·검수 상태의 사람용 인덱스는 `art-workspace/ASSET-CATALOG.md`다.
+- 승인된 runtime 파일은 complete layer 재조립·최적화까지 통과한 뒤 `app`의
+  dry-run/명시적 write 승격 게이트로만 `app/public/assets/` pack에 추가한다.
+- 런타임 단일 원본은 `app/public/assets/manifest.json`이며 `app`에는 `art/`와 `captures/`를 만들지 않는다.
+- Artist는 에셋을 생성·수정·폐기한 작업에서 로컬 카탈로그를 갱신하고 실제 파일·해시·상태와 자동 대조한다.
 - 개발자는 파일명을 추측하거나 재명명하지 않고 에셋 ID와 카탈로그 경로를 사용한다.

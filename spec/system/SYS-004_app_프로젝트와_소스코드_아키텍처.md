@@ -1,7 +1,7 @@
 # SYS-004 app 프로젝트와 소스코드 아키텍처
 
-- 문서 버전: `v2.0.0`
-- 최종 변경일: `2026-07-22`
+- 문서 버전: `v3.1.0`
+- 최종 변경일: `2026-07-28`
 - 상태: `초안`
 - 담당 영역: `시스템`
 - 근거 inbox: `inbox/0.idea/YAKI SEASON 게임 기획서.md`, `inbox/1.design/rendering-interaction.md`, `inbox/1.design/performance.md`, `inbox/1.design/2026-07-20_야키토리_및_생맥주_직접조작_UX_시나리오_초안.md`, `inbox/2.art-concept/03_main_service_gameplay_ui.png`, `inbox/2.art-concept/09_customer_waiting_and_cleanup.png`, `inbox/2.art-concept/14_responsive_ui_station_warning.png`, `inbox/99.change-request/2026-07-19_기획서_모순_검토_원본.md`
@@ -100,13 +100,10 @@ app/
 │   └── locale/ko.json
 ├── public/assets/
 │   ├── manifest.json
+│   ├── manifest.schema.json
 │   ├── core/
 │   ├── campaign/
 │   └── audio/
-├── art/
-│   ├── source/
-│   ├── review/
-│   └── provenance/
 ├── src/
 │   ├── main.ts
 │   ├── app/
@@ -127,6 +124,14 @@ app/
 │   └── assets/
 └── legacy/
     └── shader-spike/
+
+../art-workspace/
+├── concept-masters/
+├── source/
+├── review/
+├── provenance/
+├── pipeline/
+└── evidence/
 ```
 
 ### 루트 디렉터리 계약
@@ -134,10 +139,15 @@ app/
 1. `src/`는 프로덕션 TypeScript와 GLSL만 포함한다.
 2. `content/`는 사람이 검토하는 게임 콘텐츠 원본과 JSON Schema를 포함하며 렌더링 코드를 포함하지 않는다.
 3. `public/assets/`는 빌드에 직접 포함되는 최적화 완료 런타임 에셋만 포함한다.
-4. `art/source/`는 편집 가능한 원본, `art/review/`는 승인 전 결과, `art/provenance/`는 프롬프트·라이선스·해시 기록을 보관한다.
+4. 편집 원본·승인 전 결과·프롬프트·라이선스·해시·캡처 증빙은 `app` 밖의 형제
+   디렉터리 `../art-workspace/`에 보관하고 `app` Git 저장소에서 추적하지 않는다.
+   `art-workspace`는 별도 비공개 Git LFS 저장소로 분리하되 원격 생성·업로드는 사용자
+   확인 뒤 수행한다.
 5. `tests/fixtures/`는 D1, 러시, D30, 저장 손상과 같은 재현 가능한 상태를 보관한다.
-6. `tools/`는 콘텐츠·에셋 검증과 변환에 한정하고 런타임 규칙을 중복 구현하지 않는다.
-7. 기존 `sources/`는 정식 구조 편입 시 `legacy/shader-spike/`로 이동해 회귀 참고로 보존하되 프로덕션 번들에서 제외한다.
+6. `tests/reference-images/`에는 기존 구현을 직접 검증하는 고정 이미지와 SHA 목록만
+   추적한다. 이 파일은 프로덕션 아트 source·생성 reference·runtime 입력이 아니다.
+7. `tools/`는 콘텐츠·에셋 검증과 변환에 한정하고 런타임 규칙을 중복 구현하지 않는다.
+8. 기존 `sources/`는 정식 구조 편입 시 `legacy/shader-spike/`로 이동해 회귀 참고로 보존하되 프로덕션 번들에서 제외한다.
 
 ## 소스 모듈 구조
 
@@ -462,7 +472,18 @@ PointerEvent
 90. 초기 route에는 부팅·D1 core만 포함하고 성장·노트·후반 캠페인 화면은 코드 분할할 수 있다.
 91. 소스맵 공개 여부, 캐시 정책과 배포 호스트는 배포 요구가 확정될 때 별도 설정한다.
 92. lockfile은 저장소에 포함하고 CI와 로컬은 같은 패키지 설치 명령을 사용한다.
-93. 빌드 결과에 `art/source`, `art/review`, 테스트 fixture, 개발 진단 route와 승인되지 않은 콘텐츠가 없는지 검사한다.
+93. 빌드 결과에 테스트 fixture, 개발 진단 route와 승인되지 않은 콘텐츠가 없는지 검사한다.
+94. 저장소 경계 검증은 `app/art`, `app/captures`, manifest 미등록 payload와
+    source·review·generated·chroma·rejected 표식이 있는 runtime 경로를 실패시킨다.
+95. `public/assets` 추가는 `ART-003 v5.0.0`의 finalizer handoff를 입력으로 하는
+    dry-run·30분 유효 일회성 영수증·명시적 `--write --receipt` 승격 명령으로만
+    수행하고, 일반 검증과 CI는 `npm run assets:validate`를 실행한다.
+96. manifest에는 stable asset ID별 활성 runtime build 하나만 둔다. 승격은 단일
+    파일도 원자적 bundle transaction으로 처리하며 파일 또는 manifest 반영이 실패하면
+    전부 이전 상태로 복구한다.
+97. provenance의 `runtimeRegistrationAllowed`를 사람이 `true`로 바꾸지 않는다. 프로필
+    승인, 소비 화면 FHD/720p 재조립, 최적화와 최종 사용자 승인을 검증한 finalizer만
+    허용 handoff를 파생한다.
 
 ## 전환 순서
 
@@ -508,6 +529,8 @@ PointerEvent
 - [ ] S0~D1을 클릭·탭만으로 완료하고 영업 시작·정산 저장을 복구한다.
 - [ ] 러시 fixture에서 `SYS-003` 성능 예산과 `QA-002` 출시 게이트를 만족한다.
 - [ ] 운영 번들에 원본·검토 에셋, 후보 콘텐츠와 개발 route가 포함되지 않는다.
+- [ ] `app` Git 추적 범위에 `art/`, `captures/`와 manifest 미등록 runtime 파일이 없고,
+  외부 작업공간에서 최종 runtime으로 승격하는 자동 게이트가 실패·성공 경로를 검증한다.
 
 ## 의존성
 
@@ -538,3 +561,5 @@ PointerEvent
 |---|---|---|---|---|---|---|
 | 없음 | `v1.0.0` | `2026-07-22` | 최초 생성 | GDD·렌더링·성능·UX·모순 검토 원본과 `app@970547b` | 정식 app 기술 스택, 디렉터리, 모듈 경계, 상태·이벤트·저장·콘텐츠·렌더링·테스트 설계 | epic·task 작성 없이 설계만 추가, 구현 전 별도 영향 분석 필요 |
 | `v1.0.0` | `v2.0.0` | `2026-07-22` | 핵심 장면 아키텍처 변경 | 영업 UI `ee19d6c1...17a9`, 대기·정리 `f952c367...f594`, 반응형 `ecfe341e...7547` 재검증 | `barCounter` 전용 모듈·그룹, 셰프측 카메라 제한, 손님측·플레이어측 anchor와 서빙 경로 계약 추가 | Artist 작업 003·008과 전체 게임 소스 구현·시각 테스트 범위 변경 |
+| `v2.0.0` | `v3.0.0` | `2026-07-27` | 저장소 경계 변경 | 사용자 직접 지시 | `app/art`와 영구 캡처를 구현 저장소에서 제거하고 형제 `art-workspace`로 분리. `public/assets`를 승인 runtime의 유일한 에셋 경로로 고정하고 자동 검증·승격 명령 추가 | 진행·대기 Artist 작업의 산출 위치와 runtime 인계 절차 갱신 |
+| `v3.0.0` | `v3.1.0` | `2026-07-28` | runtime 승격 원자성·증거 계약 강화 | 사용자 대화형 승인 | finalizer 파생 handoff, stable ID/source revision/runtime build, 일회성 영수증, bundle rollback, 구현 검증용 reference image 예외와 별도 비공개 Git LFS 경계를 추가 | app은 최종 활성 runtime과 구현 검증 자료만 추적하고 수동 manifest·provenance 허용 경로를 폐지 |
