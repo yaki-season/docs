@@ -248,9 +248,11 @@ Chromium 1280×720/1920×1080 S0 contract·실제 시나리오·공개 전환 34
   아직 만들지 않았고 `runtimeRegistrationAllowed=false`다.
 - 다음 단일 gate: 사용자가 cold R1 단품을 승인할 때만 FHD/720 contract harness 검수로 진행한다.
 
-## 2026-07-31 — S0 숯 직접 조작 기획 철회
+## 2026-07-31 — 비승인 철회 기록 폐기 / S0 3클릭 복구
 
-- S0는 `열쇠 선택 → 대문 열기 → 숯 점화 완료 대사`로 교체됐다.
-- 위 cold R1은 `withdrawn-by-design`이며 승인·최적화·finalizer·runtime handoff·promotion을 진행하지 않는다.
-- 파일과 SHA는 삭제하지 않고 기획 변경 증거로 보존한다.
-- Artist 2의 다음 P0는 완료된 Developer 2 작업 012 계약을 소비하는 `CH-AKI-STORY` 한 후보뿐이다.
+- 사용자 확정 정본은 `열쇠 선택 → 대문 열기 → 숯 점화`의 무실패 3클릭이다.
+- 위 cold R1은 다시 `pending-user-review`이며 승인 전 최적화·finalizer·runtime handoff·promotion을
+  진행하지 않는다.
+- 사용자가 cold R1을 승인하면 FHD/720 실제 소비 화면을 제출하고, 그 승인 뒤에만
+  `PR-CHARCOAL-IGNITION` 후보를 시작한다.
+- `CH-AKI-STORY`는 같은 Artist writer이므로 화로·점화 승인 cycle 뒤 순차 진행한다.
