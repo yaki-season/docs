@@ -1,8 +1,8 @@
 # 개발자 2 - 013 D1 시각 variant inventory 완전성 gate
 
-- 문서 버전: `v1.0.1`
+- 문서 버전: `v1.1.0`
 - 최종 변경일: `2026-07-31`
-- 상태: `진행 중`
+- 상태: `완료`
 - 담당자: `개발자 2`
 - 우선순위: `P1`
 - 현재 milestone에 필요한 이유: required 맥주 visual 누락 상태의 placeholder 0 false positive를 막는다.
@@ -11,9 +11,9 @@
 ## 참조 spec
 
 - `spec/gameplay/GPL-004_조리_스테이션과_품질_서빙.md` - `GPL-004` - `v1.39.0`
-- `spec/ui/UI-003_전체_게임_상세_화면_설계.md` - `UI-003` - `v1.2.0`
-- `spec/art/ART-003_런타임_아트_에셋_목록과_제작_계약.md` - `ART-003` - `v5.9.0`
-- `spec/qa/QA-002_전체_게임_기능_성능_출시_검증.md` - `QA-002` - `v1.1.0`
+- `spec/ui/UI-003_전체_게임_상세_화면_설계.md` - `UI-003` - `v3.0.0`
+- `spec/art/ART-003_런타임_아트_에셋_목록과_제작_계약.md` - `ART-003` - `v7.0.0`
+- `spec/qa/QA-002_전체_게임_기능_성능_출시_검증.md` - `QA-002` - `v1.3.0`
 - `epic/developer-2/003_D1_승인_아트_상태별_즉시_적용.md` - runtime promotion·inventory - `v1.5.0`
 - `epic/artist/025_D1_드링크_서빙_정리_엑스트라_정산_정식_아트.md` - 생산자 - `v1.1.1`
 - `epic/pm-orchestration/002_D1_전체_영업일_완전_구동과_사람_플레이테스트.md` - stage gate - `v1.0.0`
@@ -78,23 +78,33 @@ required visual variant 전수 집계를 공개 gate에 포함한다.
 
 ## 완료 기준
 
-- [ ] 세 stable ID가 근거와 함께 required/derived/불필요로 판정된다.
-- [ ] required visual variant가 placeholder·missing·binding 집계에서 누락되지 않는다.
-- [ ] 일부 visual variant 누락 상태에서 placeholder 0을 반환하지 않는 테스트가 통과한다.
-- [ ] 두 D1 진입점과 QA가 같은 total·bound·placeholder 수를 보고한다.
-- [ ] Artist 3가 추측 없이 필요한 exact ID와 소비 state를 받는다.
-- [ ] 아트·manifest·promotion은 변경하지 않는다.
+- [x] 세 stable ID가 근거와 함께 required/derived/불필요로 판정된다.
+- [x] required visual variant가 placeholder·missing·binding 집계에서 누락되지 않는다.
+- [x] 일부 visual variant 누락 상태에서 placeholder 0을 반환하지 않는 테스트가 통과한다.
+- [x] 두 D1 진입점과 QA가 같은 total·bound·placeholder 수를 보고한다.
+- [x] Artist 3가 추측 없이 필요한 exact ID와 소비 state를 받는다.
+- [x] 아트·manifest·promotion은 변경하지 않는다.
 
 ## 구현 및 검증 결과
 
-- app 구현 위치: 선행 작업 뒤 확정
+- app 구현 위치:
+  - `src/assets/d1RuntimeInventory.js`
+  - `src/assets/runtimeAssetResolver.js`
+  - `src/assets/s0D1ArtBindingContract.js`
+  - `tests/integration/d1VisualVariantInventoryGate.test.js`
+  - `tests/unit/runtimeAssetResolver.test.js`
+  - `tests/e2e/d1-order.spec.js`
 - 구현 기준 spec 버전: 위 참조 spec
-- 구현 기준 태스크 버전: `v1.0.1`
+- 구현 기준 태스크 버전: `v1.1.0`
 - 검증 방법: inventory/contract unit, 두 D1 진입점 Chromium FHD/720 harness
-- 검증 결과: QA 재현을 수신하고 선행 작업 012 완료 뒤 착수
-- 현재 재현: assets `12/12`, reference `36/36`, D1 placeholder `33`이지만 위 세 ID는 집계 밖이라
-  현재 placeholder 0 gate가 불완전하다.
-- 남은 위험: derived와 required를 근거 없이 축소해 공개 false positive를 만드는 것
+- 검증 결과:
+  - `TEX-BEER-LIQUID`, `VFX-BEER-CORE`는 직접 render layer이므로 required로 판정했다.
+  - `FD-BEER-SERVED`는 준비 목록 DOM과 기존 손님 composition에서 파생되므로 별도 runtime ID가
+    아닌 derived로 판정했다.
+  - D1 집계는 required `44`, approved·bound `9`, placeholder `35`, drink placeholder `5`다.
+  - required 한 건을 제외한 fixture에서 placeholder `1`을 반환한다.
+  - 전체 Vitest `351/351`, D1 Chromium FHD/720 `2/2`, S0 3클릭 Chromium FHD/720 `2/2` 통과.
+- 남은 위험: 실제 liquid·VFX 픽셀과 station 소비 화면은 Artist 3 사용자 승인 뒤 별도 finalizer·promotion이 필요하다.
 
 ## 변경 이력
 
@@ -102,3 +112,4 @@ required visual variant 전수 집계를 공개 gate에 포함한다.
 |---|---|---|---|---|---|---|
 | 없음 | `v1.0.0` | `2026-07-31` | QA 재현 기반 후속 작업 생성 | `ART-003 v5.9.0`, `QA-002 v1.1.0` | 맥주 liquid·VFX·served visual의 inventory 누락과 placeholder 0 false positive를 독립 gate로 분리 | 개발자 2 작업 012 뒤 실행하고 Artist 3·QA에 자동 인계 |
 | `v1.0.0` | `v1.0.1` | `2026-07-31` | 선행 완료·자동 착수 | 동일 | 개발자 2 작업 012 `v1.1.0` 완료 뒤 같은 역할 agent에 required visual inventory 감사를 자동 인계 | QA가 보고한 최소 미집계 3건을 exact 판정·집계해야 함 |
+| `v1.0.1` | `v1.1.0` | `2026-07-31` | 구현·검증 완료 | `UI-003 v3.0.0`, `ART-003 v7.0.0`, `QA-002 v1.3.0` | liquid·VFX를 required, served를 derived로 판정하고 44/9/35·drink 5 집계와 false-positive 차단 테스트를 고정 | Artist 3에 exact 두 ID·state를 인계하고 QA가 전체 공개 gate를 재검증 |
