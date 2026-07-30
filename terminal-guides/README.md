@@ -9,7 +9,7 @@
 
 | 역할 | 시작 지침 | 직전 작업 기록 |
 |---|---|---|
-| 기획/PM | [PM.md](PM.md) | [handoffs/pm.md](handoffs/pm.md) |
+| 기획/PM/오케스트레이터 | [PM.md](PM.md) | [handoffs/pm.md](handoffs/pm.md) |
 | 개발자 1 | [DEVELOPER-1.md](DEVELOPER-1.md) | [handoffs/developer-1.md](handoffs/developer-1.md) |
 | 개발자 2 | [DEVELOPER-2.md](DEVELOPER-2.md) | [handoffs/developer-2.md](handoffs/developer-2.md) |
 | 개발자 3 | [DEVELOPER-3.md](DEVELOPER-3.md) | [handoffs/developer-3.md](handoffs/developer-3.md) |
@@ -18,9 +18,15 @@
 | Artist 2 | [ARTIST-2.md](ARTIST-2.md) | [handoffs/artist-2.md](handoffs/artist-2.md) |
 | Artist 3 | [ARTIST-3.md](ARTIST-3.md) | [handoffs/artist-3.md](handoffs/artist-3.md) |
 
-## 현재 PM 실행 지시
+## 현재 PM 실행 진입점
 
-- [2026-07-30 topology preflight와 D1 개발 cycle 동기화](dispatches/2026-07-30-art-topology-dev-sync.md)
+- [PM/오케스트레이터 단일 시작 지침](PM.md)
+- [PM stage epic](../epic/pm-orchestration/)
+- [현재 작업 현황](../epic/작업_현황.md)
+- [사람 화면 플레이테스트 피드백 템플릿](../template/사람_화면_플레이테스트_피드백_템플릿.md)
+
+과거 `dispatches/` 문서는 해당 시점의 기록이며 새 세션의 실행 정본이 아니다. PM은 현재 stage epic과
+실제 파일·검증 증거를 복구해 역할 서브에이전트에 다음 작업을 자동 배정한다.
 
 ## 어디서나 이어가기 위한 전제
 

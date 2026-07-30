@@ -9,7 +9,8 @@
 - `inbox/`: 사람이 직접 넣은 정제되지 않은 원본 데이터(raw data)를 그대로 보관한다.
 - `spec/`: AI가 `inbox/` 원본을 분석·정제한 요구사항 상세 설계를 카테고리별로 관리한다.
 - `template/`: AI 개발 지침서와 반복 사용 가능한 문서 템플릿을 보관한다.
-- `epic/`: `spec/`을 기반으로 개발자·Artist 역할이 독립적으로 수행할 작업을 순차적인 태스크 문서로 관리한다.
+- `epic/`: `spec/`을 기반으로 PM·개발자·Artist·통합 QA 역할이 독립적으로 수행할 작업과
+  스테이지별 병렬·순차 인계를 태스크 문서로 관리한다.
 - `terminal-guides/`: 컴퓨터·터미널·대화 세션이 바뀌어도 PM·개발자·Artist가 직전 작업에서
   재개하기 위한 역할별 최초 지침과 handoff 기록을 관리한다.
 
@@ -81,7 +82,7 @@ flowchart TB
 | 원본 입력 | 사람 | `inbox/`, `inbox/99.change-request/` | 정제하지 않은 원본을 그대로 보관하고 AI는 수정하지 않음 |
 | 원본 판별 | AI | `spec/meta/inbox_처리_이력.md` | 경로와 SHA-256 지문으로 신규·갱신·중복 원본 구분 |
 | 요구사항 정제 | AI | 카테고리별 `spec/` | 새 문서는 `v1.0.0`, 기존 문서는 변경 영향에 따라 주·부·수 버전 증가 |
-| 작업 계획 | AI | `epic/developer-1/`, `epic/developer-2/`, `epic/developer-3/`, `epic/artist/`, `epic/qa-release/` | 정확한 spec 버전을 참조하고 기존 태스크 갱신 또는 새 태스크 생성 |
+| 작업 계획 | AI | `epic/pm-orchestration/`, `epic/developer-1/`, `epic/developer-2/`, `epic/developer-3/`, `epic/artist/`, `epic/qa-release/` | 정확한 spec 버전을 참조하고 기존 태스크 갱신 또는 새 태스크 생성 |
 | 작업 현황 | AI | `epic/작업_현황.md` | 개발자별 진행·대기·보류·완료 상태와 태스크 버전 동기화 |
 | 구현·검증 | 개발자 또는 AI | `app` 저장소 | 지정된 spec·태스크 버전을 기준으로 구현하고 검증 결과 기록 |
 | 재입력 | 사람 | `inbox/99.change-request/` | 구현 중 발견한 개선사항·버그·모순을 새 원본으로 기록하여 순환 재개 |

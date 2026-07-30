@@ -8,7 +8,7 @@
 
 - `spec/`의 요구사항 상세 설계 문서
 - `spec/meta/`의 AI 관리 문서
-- `epic/developer-1/`, `epic/developer-2/`, `epic/developer-3/`, `epic/artist/`,
+- `epic/pm-orchestration/`, `epic/developer-1/`, `epic/developer-2/`, `epic/developer-3/`, `epic/artist/`,
   `epic/qa-release/`의 태스크 문서
 - `epic/작업_현황.md`
 
