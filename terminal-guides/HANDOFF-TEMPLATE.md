@@ -5,6 +5,9 @@
 - 작성한 터미널:
 - runId:
 - stage:
+- 우선순위: `P0 | P1 | P2 | P3`
+- 왜 지금 필요한가:
+- 안 하면 막히는 stage gate:
 - producer → consumer:
 - 담당 epic·버전:
 

@@ -54,6 +54,8 @@ PM 진행표:
 서브에이전트 운용:
 - PM을 포함해 동시에 사용할 수 있는 슬롯 수를 확인한다. 기본 4개 슬롯이면 역할 agent는 최대 3개만
   active로 두고 나머지는 stable role queue에서 교대한다.
+- 역할이 놀고 있다는 이유만으로 작업을 만들거나 배정하지 않는다. 모든 dispatch 전에 아래
+  `목표 기여도·우선순위 gate`를 통과시킨다.
 - 같은 역할을 중복 spawn하지 않는다. 기존 agent가 있으면 follow-up으로 다음 작업을 전달한다.
 - 역할 agent에게 임의 재위임 권한을 주지 않는다. spawn/follow-up/interrupt와 우선순위 변경은 PM이 맡는다.
 - 한 agent에는 검증 가능한 단일 작업만 배정한다.
@@ -61,6 +63,30 @@ PM 진행표:
   선행 조건, 제외 범위, 완료 테스트, 사용자/사람 gate, producer, consumer, next task를 지시문에 쓴다.
 - 한 경로, stable asset ID, sourceMasterId, semanticOwner, finalizer bundle, manifest promotion은 동시 writer
   한 명만 허용한다.
+
+목표 기여도·우선순위 gate:
+1. 현재 목표 stage를 온전히 구동하거나 그 사람 화면 테스트를 여는 데 꼭 필요한가?
+2. 현재 임계경로의 exact blocker를 해소하거나 다음 producer/consumer를 실제로 unblock하는가?
+3. 하지 않으면 공개 gate·저장 무결성·사용자 승인·회귀 정확성이 실패하는가?
+4. 입력·승인·정본이 준비돼 지금 검증 가능한가?
+5. 같은 결과를 이미 완료된 작업이나 더 작은 read-only 확인으로 얻을 수 없는가?
+
+- 위 질문 1~3 중 하나에도 해당하지 않으면 현재 milestone의 필수 작업이 아니다.
+- 필수여도 입력이나 사용자 승인이 없으면 종속 구현을 배정하지 말고 blocker owner와 승인 요청만 만든다.
+- 새 작업을 만들기 전에 기존 진행 epic의 완료 기준에 이미 포함됐는지 확인한다. 포함됐다면 중복 epic
+  대신 기존 owner에게 exact 남은 항목만 돌려준다.
+- dispatch에는 `왜 지금 필요한가`, `안 하면 막히는 stage gate`, `완료 뒤 즉시 받는 consumer`,
+  `우선순위`를 반드시 기록한다.
+
+우선순위:
+- `P0`: 현재 S0/D1 공개 또는 현재 stage 사람 완주를 직접 막는 기능·저장·승인·placeholder·회귀 blocker.
+- `P1`: P0 producer를 즉시 unblock하는 exact 계약·binding·검증 또는 공개 false positive 제거.
+- `P2`: 현재 stage에 필요하지만 P0/P1 뒤에 해도 되는 polish·성능·접근성·증거 정리.
+- `P3`: 후속 stage 선행 제작, 리팩터링, 편의 도구, 선택적 cleanup.
+- active slot은 P0, 같은 P0를 unblock하는 P1 순으로 채운다. P2는 runnable P0/P1이 없을 때만,
+  P3는 현재 stage gate 완료 뒤에만 시작한다.
+- 비용이 큰 작업보다 목표 gate를 가장 빨리 닫는 최소 검증 가능한 slice를 먼저 배정한다.
+- agent 완료 때마다 전체 queue를 다시 점수화한다. 과거 우선순위를 관성적으로 유지하지 않는다.
 
 병렬/순차 판단:
 - 서로 다른 owner·쓰기 경로·stable ID이고 사용자 승인 결과에 의미가 의존하지 않으면 병렬 실행한다.
@@ -136,7 +162,7 @@ PM 진행표:
 | Developer 2 | UI·시나리오 소비, binding, 승인 asset promotion, public shell | Artist source·승인 대행 |
 | Developer 3 | data·schema·contract test·회귀 도구 | app feature/UI 직접 구현 |
 | Artist 1 | D1 조립·그릴·음식 model/shader와 소비 화면 | 다른 Artist stable ID·runtime promotion |
-| Artist 2 | S0 환경·소품·숯·아키 이야기 초상 | D1 조리·드링크 |
+| Artist 2 | S0 환경·소품·아키 이야기 초상 | D1 조리·드링크 |
 | Artist 3 | D1 드링크·서비스·정리·엑스트라·정산, D2~D3 서비스 | S0·D1 음식 shader |
 | 통합 QA·릴리스 | 재현·분류·재검증·공개 gate·안전한 transient 감사 | 기능·아트 의미 수정·사용자 승인 대행 |
 
@@ -147,6 +173,9 @@ runId:
 역할/persona:
 stage:
 epic/버전:
+우선순위: P0 | P1 | P2 | P3
+왜 지금 필요한가:
+안 하면 막히는 stage gate:
 목표:
 허용 쓰기 경로:
 읽기 전용 입력과 SHA:

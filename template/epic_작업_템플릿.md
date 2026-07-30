@@ -4,6 +4,9 @@
 - 최종 변경일: `YYYY-MM-DD`
 - 상태: `대기`
 - 담당자: `기획/PM/오케스트레이터 | 개발자 1 | 개발자 2 | 개발자 3 | Artist 1 | Artist 2 | Artist 3 | 통합 QA·릴리스`
+- 우선순위: `P0 | P1 | P2 | P3`
+- 현재 milestone에 필요한 이유:
+- 하지 않으면 막히는 stage gate:
 
 ## 참조 spec
 

@@ -2,7 +2,7 @@
 
 - 마지막 갱신: `2026-07-31`
 - 담당 역할: `기획/PM/오케스트레이터`
-- 기준 dashboard: `docs/epic/작업_현황.md v2.1.141`
+- 기준 dashboard: `docs/epic/작업_현황.md v2.1.142`
 - 현재 stage epic:
   - `pm-orchestration/001` S0 `v1.0.0` 진행 중
   - `pm-orchestration/002` D1 `v1.0.0` 진행 중
@@ -14,7 +14,7 @@
 | 저장소 | branch | HEAD | 담당 dirty·untracked 경로 | 다른 역할 변경 주의 |
 |---|---|---|---|---|
 | `docs` | `main` | `1fc074e` | PM stage epic·가이드·dashboard·QA/Dev3 상태 동기화 변경 | commit 전 다른 역할의 docs writer와 겹치지 않게 한다. |
-| `app` | `main` | `c0b1bd4` | 없음 | PM은 직접 구현하지 않는다. |
+| `app` | `main` | `c0b1bd4` | Developer 1 `src/render/d1ExtraActorContract.js`, 전용 unit; Developer 2 `src/assets/s0AkiStoryPortraitBindingContract.js`, 전용 integration | 각 run 산출물은 서로 읽기 전용이며 작업 013이 수정하지 않는다. |
 | `art-workspace` | `main` | `36b0164` | 없음 | 사용자 승인 전 후보·metadata를 수정하지 않는다. |
 
 현재 docs 변경은 아직 원격에 전달되지 않았다. 다른 컴퓨터에서는 commit/push 또는 승인된 파일
@@ -27,7 +27,9 @@
 - S0·D1 진행, D2·D3/D4 대기 stage 태스크를 `epic/pm-orchestration/`에 만들었다.
 - 사람 화면 테스트 표준 양식과 stage별 필수 `PASS` gate를 만들었다.
 - Developer 3 작업 011을 현재 HEAD 계약 `5/5`로 재검증하고 `v1.0.3` 완료 처리했다.
-- QA 작업 001은 사람 화면 gate 수신이 필요해 `v1.2.0`·`변경 확인 필요`로 전환했다.
+- Developer 1은 D1 익명 엑스트라 state→clip·6석 geometry 계약을 완료해 Artist 3 입력을 만들었다.
+- Developer 2 작업 012는 CH-AKI-STORY exact binding 계약을 완료했고 작업 013으로 자동 인계했다.
+- QA 작업 001은 사람 화면 gate를 수신해 `v1.2.1`·진행 중으로 재개했다.
 
 ## 현재 사용자 승인 큐
 
@@ -55,23 +57,22 @@
 
 ## 역할 run queue
 
-| 우선순위 | 역할 | stage/epic | 현재 한 작업 | 자동 다음 인계 |
-|---|---|---|---|---|
-| 1 | 통합 QA·릴리스 | QA 001 `v1.2.0` | 사람 화면 gate 변경 범위 수신, 최신 assets/Vitest/placeholder 기준선 재감사 | PM이 첫 실제 테스트 카드 발행 |
-| 2 | Developer 2 | S0 / 012 | `CH-AKI-STORY` portrait binding의 exact bounds/layer/DOM-safe/story-only 계약 | Artist 2 Aki 무픽셀 preflight→사용자 승인 |
-| 3 | Developer 1 | D1 / 005 | Artist 3 commuter state→clip mapping과 이름 없는 엑스트라 의미 계약 | Artist 3 commuter preflight→사용자 승인 |
-| 4 | Developer 2 | D1 / 013 | 작업 012 뒤 맥주 liquid·VFX·served required inventory 전수 감사 | Artist 3 exact ID·QA placeholder gate |
-| 5 | Artist 2 | S0 / 023 | cold R1 사용자 승인 결과 소비 | FHD/720 소비 화면 또는 반려 범위 수정 |
-| 6 | Artist 1 | D1 / 000 | cooking second-face R2 사용자 승인 결과 소비 | proper-first-face 이전 integration |
-| 7 | Artist 3 | D1 / 025 | beer station R2 사용자 승인 결과 소비 | finalizer→Developer 2 promotion |
-| 8 | Developer 3 | D1 / 011 | 완료. 새 runnable contract task 없음 | QA가 계약 5/5를 기준선으로 소비 |
+| 우선순위 | 역할 | stage/epic | 현재 한 작업 | 목표 기여·막히는 gate | 자동 다음 인계 |
+|---|---|---|---|---|---|
+| P0/재검증 대기 | 통합 QA·릴리스 | QA 001 `v1.2.1` | 사람 gate 수신·최신 선택 기준선 감사 완료 | 공개 PASS와 사람 테스트 카드의 기준선 정확성 | 작업 013·승인 lane 뒤 재검증 |
+| 완료→승인 | Developer 2 | S0 / 012 | `CH-AKI-STORY` exact binding 계약 완료 | S0 초상 제작·placeholder 0 blocker | Artist 2 Aki 무픽셀 preflight→사용자 승인 |
+| 완료→승인 | Developer 1 | D1 / 005 | commuter state→clip·익명 semantics 계약 완료 | D1 엑스트라 제작·placeholder 0 blocker | beer station P0 승인 뒤 Artist 3 preflight |
+| P1/active | Developer 2 | D1 / 013 | 맥주 liquid·VFX·served required inventory 전수 감사 | placeholder 0 false positive 차단 | Artist 3 exact ID·QA placeholder gate |
+| P0/승인 | Artist 2 | S0 / 023 | cold R1 사용자 승인 결과 소비 | S0 BRAZIER/CHARCOAL placeholder 0 blocker | FHD/720 소비 화면 또는 반려 범위 수정 |
+| P0/승인 | Artist 1 | D1 / 000 | cooking second-face R2 사용자 승인 결과 소비 | D1 grill state placeholder 0·면 구별 blocker | proper-first-face 이전 integration |
+| P0/승인 | Artist 3 | D1 / 025 | beer station R2 사용자 승인 결과 소비 | D1 drink placeholder 0 blocker | finalizer→Developer 2 promotion |
+| 완료 | Developer 3 | D1 / 011 | 완료. 새 runnable contract task 없음 | 조기 뒤집기·비FIFO 회귀 green | QA가 계약 5/5를 기준선으로 소비 |
 
 ## 임계경로와 병렬성
 
 - 현재 병렬 가능:
-  - Developer 2 `CH-AKI-STORY` 계약
-  - Developer 1 commuter clip/role 계약
-  - QA 사람 화면 gate 수신·최신 기준선
+  - Developer 2 작업 013 inventory 보완
+  - 사용자 승인 큐 1건 판단
 - 사용자 승인 결과에 종속:
   - Artist 2 cold brazier
   - Artist 1 cooking second-face
@@ -91,16 +92,19 @@
 
 ## 마지막 검증
 
-- 명령:
-  `npx vitest run tests/unit/d1FlipCustomerServingRegression.contract.test.js --reporter=verbose`
+- 명령: Developer 1·2 역할 run의 전체 `npm test`, QA 선택 unit/E2E와 asset/reference validator
 - app HEAD: `c0b1bd4`
-- 결과: test file 1개, 계약 `5/5` 통과
+- 결과:
+  - Developer 1 extra contract `22/22`, 전체 Vitest `348/348`
+  - Developer 2 Aki contract `7/7`, 관련 `21/21`, 전체 Vitest `348/348`, FHD/720 `12/12`
+  - QA assets `12`, reference `36`, unit `19`, FHD/720 E2E `20` 통과
+  - art pipeline `30` 실패, D1 보고 placeholder `33`+미집계 최소 `3`
 
 ## 다음 PM 동작
 
-1. QA·Developer 2·Developer 1의 독립 작업을 역할 subagent에 최대 세 lane으로 배정한다.
+1. Developer 2 작업 013 결과를 QA·Artist 3에 인계한다.
 2. 사용자에게 승인 큐 1번 `ST-S0-BRAZIER cold R1`을 표준 승인 카드로 제시한다.
-3. 승인 결과를 Artist 2에 자동 인계하고 독립 lane 완료마다 다음 consumer를 즉시 배정한다.
+3. 승인 결과를 Artist 2에 자동 인계하고 이후 Artist 1·3 후보를 한 건씩 제시한다.
 
 ## 재개 시 금지
 
