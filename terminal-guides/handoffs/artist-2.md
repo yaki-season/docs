@@ -211,3 +211,25 @@ body part `0`, action DOM 교차 `0`을 확인했다.
 
 검증은 runtime assets 11개, reference 36장, 전체 Vitest 42파일·300개,
 Chromium 1280×720/1920×1080 S0 contract·실제 시나리오·공개 전환 34개가 통과했다.
+
+## 2026-07-31 — Developer 2 작업 011 수신 감사 / 화로 사용자 preflight 준비
+
+- KEY promotion: **확인 완료**. `PR-SHOP-KEY@R1-B1` manifest exact ID는 `PR-SHOP-KEY`, runtime URL은
+  `/assets/core/s0/prologue/pr-shop-key-placed-r1-b1.png`, runtime SHA-256은
+  `a8a22c3beaa6a4ffa1b45dad6eb4438eda729d325740ad9bcb265d3363229eeb`이다. Artist 2 finalizer handoff SHA
+  `ba6cd227d7041e45df8d98e7c29dff3d4362d4608c5304390a559478f6d8c40f`와 일치한다.
+- receipt: Developer 2 작업 011의 `dry-run → receipt 검증 → 동일 receipt write` 완료 기록을 수신했다.
+  `app/.asset-promotion-receipts/`에는 소비 전 `PR-SHOP-KEY` receipt가 남지 않아 write 뒤 receipt 소비 규칙과
+  일치한다. 기존 KEY finalizer와 runtime handoff는 수정·재생성하지 않았다.
+- exact binding / placeholder: runtime은 `S0-STATE-KEY`에서만 exact `PR-SHOP-KEY`를 해석하고, 이 ID가 없으면
+  승인 CLOSED background가 있어도 interaction 및 전체 visual을 `placeholder`로 남긴다. 현재 manifest exact ID와
+  asset이 존재해 placeholder가 제거된다. `S0_D1_ART_BINDING_CONTRACT v1.1.0` 검증 결과는 오류 `0`이다.
+- BRAZIER contract: Developer 2 `S0_BRAZIER_LAYER_CONTRACT v1.0.0`을 감사했다. 기존 미확정 3개와 수락 조건을
+  포함한 6개 항목이 모두 해소됐다: `sourceMasterId`, primary/companion pixel 분리, companion FHD/720 child
+  visualBounds, layer/zOrder, component/variant, no-double-render. envelope·interaction·DOM safe·body `0`도
+  기존 값 그대로다. 따라서 계약 blocker는 `0`개다.
+- 사용자 검수용 단일 preflight: `art-workspace/review/artist-023/s0-prologue/ignite/st-s0-brazier/preflight/USER-REVIEW-CONTRACT-v1.0.0.md`
+  — 이번 검수 대상은 차가운 `ST-S0-BRAZIER` primary 한 장뿐이며, 보이는 숯·VFX·손·도구·아키는 제외한다.
+- Aki: 기존 `CH-AKI-STORY` 무픽셀 preflight와 Developer 2 계약 요청만 유지한다. portrait binding은 아직 수신되지
+  않았으므로 pixel·runtime 등록·구형 `CH-OWNER-STORY` 재사용은 하지 않았다.
+- 다음 단일 gate: 사용자가 위 BRAZIER preflight를 승인할 때만 차가운 primary 후보 한 장을 제작한다.

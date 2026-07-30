@@ -22,9 +22,10 @@
   completion·provenance·optimization·finalizer·runtime-handoff·catalog 변경을 만들지 않으며,
   glass·lever·liquid·VFX도 병행 시작하지 않는다.
 - 병렬 무픽셀 준비: `preflight/ch-extra-commuter-service-zero-pixel-preflight-r1.md`를
-  작성했다. Developer 1의 versioned actor bounds/anchor·occlusion line·D1 clip/state
-  mapping·이름 없는 엑스트라 의미·투명 hit/raster 분리 입력을 기다린다. 이 입력과 사용자
-  preflight 승인이 전에는 commuter pixel을 만들지 않는다.
+  작성했다. Developer 1 `extra-actor-layout v1.0.0`으로 six-seat FHD/720 bounds,
+  lower-centre anchor, occlusion line, foreground occlusion, transparent hit/raster 분리는
+  수신·감사했다. clip/state mapping과 이름 없는 commuter 의미 addendum을 기다린다. 이 입력과
+  사용자 preflight 승인이 전에는 commuter pixel을 만들지 않는다.
 - 수정 금지: `review/artist-000/`, `review/artist-023/`
 - 후속 화면 기획 제약: 서빙·준비 목록·엑스트라 소비 화면에 번호 순번, FIFO 화살표,
   `먼저 주문한 손님` 강조를 넣지 않는다. 서빙 화면은 `공용 완성품 → 플레이어가 선택한
