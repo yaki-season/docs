@@ -233,3 +233,17 @@ Chromium 1280×720/1920×1080 S0 contract·실제 시나리오·공개 전환 34
 - Aki: 기존 `CH-AKI-STORY` 무픽셀 preflight와 Developer 2 계약 요청만 유지한다. portrait binding은 아직 수신되지
   않았으므로 pixel·runtime 등록·구형 `CH-OWNER-STORY` 재사용은 하지 않았다.
 - 다음 단일 gate: 사용자가 위 BRAZIER preflight를 승인할 때만 차가운 primary 후보 한 장을 제작한다.
+
+## 2026-07-31 — `ST-S0-BRAZIER` cold R1 단일 후보 제출
+
+- 사용자 preflight 승인 뒤 차가운 primary 후보 한 장만 제작했다:
+  `art-workspace/review/artist-023/s0-prologue/ignite/st-s0-brazier/cold/r1/assets/st-s0-brazier-cold-r1.png`
+  (SHA-256 `df043cca7d3672e36792e3db6705a88a83a89a4fd916021f34c023605998bcbb`).
+- FHD native canvas/visual bounds는 `624×432` / `648,376,624,432`; 720 consumer bounds는 `416×288` /
+  `432,251,416,288`이다. camera `S0-BRAZIER-FIXED-V1`, primary `architecture / z20`, body `0`, DOM safe
+  FHD `128,936,1664,104` / 720 `85,624,1109,69`를 유지한다.
+- 투명 PNG RGBA를 검증했다. 보이는 숯·불씨·불꽃·연기·재·spark·VFX·손·도구·아키·UI는 없으며,
+  `PR-CHARCOAL-IGNITION`은 companion 계약값만 보유하고 이 후보에 합성하지 않았다.
+- 현재 상태: `pending-user-review`; optimizer·FHD/720 recomposition·final approval·finalizer·runtime handoff는
+  아직 만들지 않았고 `runtimeRegistrationAllowed=false`다.
+- 다음 단일 gate: 사용자가 cold R1 단품을 승인할 때만 FHD/720 contract harness 검수로 진행한다.
