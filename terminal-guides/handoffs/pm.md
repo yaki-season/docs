@@ -2,7 +2,7 @@
 
 - 마지막 갱신: `2026-07-31`
 - 담당 역할: `기획/PM/오케스트레이터`
-- 기준 dashboard: `docs/epic/작업_현황.md v2.1.140`
+- 기준 dashboard: `docs/epic/작업_현황.md v2.1.141`
 - 현재 stage epic:
   - `pm-orchestration/001` S0 `v1.0.0` 진행 중
   - `pm-orchestration/002` D1 `v1.0.0` 진행 중
@@ -60,10 +60,11 @@
 | 1 | 통합 QA·릴리스 | QA 001 `v1.2.0` | 사람 화면 gate 변경 범위 수신, 최신 assets/Vitest/placeholder 기준선 재감사 | PM이 첫 실제 테스트 카드 발행 |
 | 2 | Developer 2 | S0 / 012 | `CH-AKI-STORY` portrait binding의 exact bounds/layer/DOM-safe/story-only 계약 | Artist 2 Aki 무픽셀 preflight→사용자 승인 |
 | 3 | Developer 1 | D1 / 005 | Artist 3 commuter state→clip mapping과 이름 없는 엑스트라 의미 계약 | Artist 3 commuter preflight→사용자 승인 |
-| 4 | Artist 2 | S0 / 023 | cold R1 사용자 승인 결과 소비 | FHD/720 소비 화면 또는 반려 범위 수정 |
-| 5 | Artist 1 | D1 / 000 | cooking second-face R2 사용자 승인 결과 소비 | proper-first-face 이전 integration |
-| 6 | Artist 3 | D1 / 025 | beer station R2 사용자 승인 결과 소비 | finalizer→Developer 2 promotion |
-| 7 | Developer 3 | D1 / 011 | 완료. 새 runnable contract task 없음 | QA가 계약 5/5를 기준선으로 소비 |
+| 4 | Developer 2 | D1 / 013 | 작업 012 뒤 맥주 liquid·VFX·served required inventory 전수 감사 | Artist 3 exact ID·QA placeholder gate |
+| 5 | Artist 2 | S0 / 023 | cold R1 사용자 승인 결과 소비 | FHD/720 소비 화면 또는 반려 범위 수정 |
+| 6 | Artist 1 | D1 / 000 | cooking second-face R2 사용자 승인 결과 소비 | proper-first-face 이전 integration |
+| 7 | Artist 3 | D1 / 025 | beer station R2 사용자 승인 결과 소비 | finalizer→Developer 2 promotion |
+| 8 | Developer 3 | D1 / 011 | 완료. 새 runnable contract task 없음 | QA가 계약 5/5를 기준선으로 소비 |
 
 ## 임계경로와 병렬성
 
