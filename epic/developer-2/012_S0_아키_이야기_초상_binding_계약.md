@@ -1,9 +1,12 @@
 # 개발자 2 - 012 S0 아키 이야기 초상 binding 계약
 
-- 문서 버전: `v1.0.0`
+- 문서 버전: `v1.1.0`
 - 최종 변경일: `2026-07-31`
-- 상태: `진행 중`
+- 상태: `완료`
 - 담당자: `개발자 2`
+- 우선순위: `P1`
+- 현재 milestone에 필요한 이유: Artist 2의 S0 아키 초상 제작을 여는 exact 계약이다.
+- 하지 않으면 막히는 stage gate: S0 이야기 placeholder 0과 S0 사람 화면 PASS
 
 ## 참조 spec
 
@@ -72,25 +75,36 @@ runtime에서 component/state/variant, fixed camera, FHD/720 bounds, layer/zOrde
 
 ## 완료 기준
 
-- [ ] 요청 필드에 `unassigned`·추측값이 0개다.
-- [ ] `CH-AKI-STORY` exact ID와 구형 ID 금지가 contract·test에 고정된다.
-- [ ] FHD/720 bounds·layer·DOM safe rect에서 대사·skip·요약 UI 교차가 없다.
-- [ ] story-only 소비와 영업·조리 화면 노출 금지가 검증된다.
-- [ ] Artist 2가 파일명·camera·variant를 추측하지 않는 versioned handoff를 받는다.
-- [ ] 아트·manifest·runtime promotion은 변경하지 않는다.
+- [x] 요청 필드에 `unassigned`·추측값이 0개다.
+- [x] `CH-AKI-STORY` exact ID와 구형 ID 금지가 contract·test에 고정된다.
+- [x] FHD/720 bounds·layer·DOM safe rect에서 대사·skip·요약 UI 교차가 없다.
+- [x] story-only 소비와 영업·조리 화면 노출 금지가 검증된다.
+- [x] Artist 2가 파일명·camera·variant를 추측하지 않는 versioned handoff를 받는다.
+- [x] 아트·manifest·runtime promotion은 변경하지 않는다.
 
 ## 구현 및 검증 결과
 
-- app 구현 위치: 작업 중
-- docs handoff 위치: 작업 중
+- app 구현 위치:
+  - `src/assets/s0AkiStoryPortraitBindingContract.js`
+  - `tests/integration/s0AkiStoryPortraitBindingContract.test.js`
+- docs handoff 위치: 이 태스크와 PM run ledger
 - 구현 기준 spec 버전: 위 참조 spec
-- 구현 기준 태스크 버전: `v1.0.0`
+- 구현 기준 태스크 버전: `v1.1.0`
 - 검증 방법: binding contract 단위 테스트, Chromium FHD/720 S0 story harness
-- 검증 결과: 작업 중
-- 남은 위험: story DOM을 기준으로 하지 않은 portrait bounds 추측, 구형 주인공 ID fallback
+- 검증 결과:
+  - contract `v1.0.0`, `story.actors / CHAR-AKI / CH-AKI-STORY`,
+    `CM-AKI-STORY-PORTRAIT-R1`, `S0-AKI-STORY-FIXED-V1`
+  - FHD visual `(192,224,384,512)`, 720 `(128,149,256,341)`, actor `z30`, DOM `z80`
+  - 표정 `fatigue/focus/mistake/relief`, 현재 아키 대사 11개 exact mapping
+  - 전용 `7/7`, 관련 `21/21`, 전체 Vitest `348/348`, Chromium FHD/720 `12/12`,
+    runtime asset `12` 검증 통과
+  - app 파일 SHA-256
+    `da5b6ada6ad69a1d92abda02960ddd02a19b5dbc8b0fde57c78413cb8c25592d`
+- 남은 위험: Artist 2 무픽셀 preflight와 실제 초상 후보는 사용자 승인 전이며 manifest에 exact asset이 없다.
 
 ## 변경 이력
 
 | 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
 |---|---|---|---|---|---|---|
 | 없음 | `v1.0.0` | `2026-07-31` | 최초 생성·착수 | `SCN-002 v1.6.0`, `UI-002 v5.25.0`, `UI-003 v1.2.0`, `ART-003 v5.9.0` | Artist 2의 유일한 S0 아키 blocker인 versioned portrait binding 계약을 독립 작업으로 생성 | 화로·숯 lane과 병렬, 실제 후보는 계약·사용자 preflight 승인 뒤 |
+| `v1.0.0` | `v1.1.0` | `2026-07-31` | 계약·검증 완료 | 동일 | exact component/source/camera/bounds/layer/DOM/표정/story-only/no-legacy 계약을 구현하고 7/7·21/21·전체 348/348·FHD/720 12/12를 통과 | Artist 2 무픽셀 preflight→사용자 승인으로 자동 인계하며 아트·manifest는 미변경 |
