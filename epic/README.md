@@ -9,7 +9,18 @@
 - `developer-1/`: 핵심 시스템, 게임플레이, 런타임 구조 중심
 - `developer-2/`: UI, 콘텐츠, 시나리오, 아트/오디오 연동 중심
 - `developer-3/`: 밸런스 데이터·로더·검증과 개발·기획용 도구(튜닝 UI·로직 시뮬레이터)
-- `artist/`: 전체 게임의 아트 제작, 검수, 런타임 배치와 경로 카탈로그 관리
+- `qa-release/`: 세 저장소 통합 기준선, 회귀, 에셋 handoff와 공개 gate 검증
+- `artist/`: Artist 1·2·3의 아트 제작, 검수, runtime handoff와 경로 카탈로그 관리
+
+### Artist 3인 기본 분담
+
+- Artist 1: D1 조립·그릴 음식 모델, 면별 shader 상태와 해당 소비 화면 finalizer
+- Artist 2: S0 열쇠·대문·숯·아키 이야기 초상과 후속 이야기·메타 화면
+- Artist 3: D1 드링크·서빙·좌석 정리·엑스트라·정산과 후속 D2~D3 서비스 화면
+
+세 역할은 같은 `artist/` 디렉터리를 사용하되 태스크마다 서로 다른
+`art-workspace/review/artist-NNN/` namespace와 단일 `semanticOwner`를 가진다. 다른 Artist의
+승인 source는 복사·수정하지 않고 읽기 전용 합성 입력으로 사용한다.
 
 각 태스크 문서는 순번을 포함한 파일명으로 작성한다.
 

@@ -2,7 +2,7 @@
 
 ## 목적
 
-갱신된 `spec/`을 개발자 2명과 Artist가 독립적으로 수행할 수 있는 순차 작업으로 유지한다.
+갱신된 `spec/`을 개발자 3명, Artist 3명과 통합 QA·릴리스가 독립적으로 수행할 수 있는 순차 작업으로 유지한다.
 
 ## 작업 상태
 
@@ -27,7 +27,7 @@
 
 ## 작업 현황 동기화
 
-`작업_현황.md`는 개발자 2명과 Artist의 전체 태스크를 집계하는 대시보드다.
+`작업_현황.md`는 개발자 3명, Artist 3명과 통합 QA·릴리스의 전체 태스크를 집계하는 대시보드다.
 
 - 태스크 생성, 상태 변경, 담당자 변경 또는 삭제 시 반드시 같은 변경에서 갱신한다.
 - `진행 중`과 `변경 확인 필요`는 담당 개발자의 현재 수행 작업으로 표시한다.
@@ -41,12 +41,23 @@
 - `developer-1/`: 핵심 시스템, 게임플레이, 런타임 구조 중심
 - `developer-2/`: UI, 콘텐츠, 시나리오, 아트·오디오 연동 중심
 - `developer-3/`: 밸런스 데이터 파일·로더·검증, 개발·기획용 도구(튜닝 UI·로직 시뮬레이터) 중심
-- `artist/`: 브랜드, 환경, 캐릭터, 3D 조작물, 음식, UI icon, VFX 제작과 에셋 manifest·개발자 카탈로그 관리
+- `qa-release/`: 역할별 변경 통합 기준선, 자동·수동 회귀, 에셋 handoff와 공개 gate 검증 중심
+- `artist/`: Artist 1·2·3의 브랜드, 환경, 캐릭터, 3D 조작물, 음식, UI icon, VFX 제작과 에셋 manifest·개발자 카탈로그 관리
 - 경계가 겹치면 각자 독립적으로 완료 가능한 단위로 나누고 입출력 계약을 두 작업에 동일하게 기록한다.
 - `developer-1`의 게임 로직은 수치를 데이터에서 읽고, `developer-3`가 그 데이터 파일·검증·도구를 제공한다. 두 역할은 데이터 스키마(`DAT-001`)를 공통 계약으로 삼는다.
 - Artist는 제작·검수 상태를 `art-workspace/ASSET-CATALOG.md`에 기록한다. 최종 runtime
   승격은 `app`의 자동 게이트로만 수행하며 `app/public/assets/manifest.json`을 런타임
   단일 원본으로 유지해 개발자가 추측한 경로를 만들지 않게 한다.
+- Artist 1·2·3은 같은 stable asset ID, `sourceMasterId`, semantic state 또는 finalizer bundle을
+  동시에 수정하지 않는다. 각 태스크의 소유권 표에 단일 `semanticOwner`와 review namespace를
+  기록하고, 다른 Artist의 승인 원본은 읽기 전용 합성 입력으로만 소비한다.
+- 현재 기본 분담은 Artist 1이 D1 조립·그릴 음식과 shader 상태, Artist 2가 S0와 이야기·초상,
+  Artist 3이 D1 드링크·서빙·정리·엑스트라·정산 및 후속 D2~D3 서비스 아트를 맡는 것이다.
+- 개발자는 screen/state/component/requiredAsset ID 목록을 먼저 고정해 Artist에게 제공하고,
+  Artist는 파일명이나 상태 ID를 추측하지 않는다. 승인 상태는 소비 화면 FHD/720 재조립,
+  최적화, 최종 승인과 finalizer handoff까지 끝난 뒤 개발자 2의 승격 절차로 전달한다.
+- 통합 QA·릴리스는 기능·아트 의미를 수정하지 않고 결함의 재현·분류·소유자 배정·재검증만
+  담당한다. 다른 역할의 dirty 파일을 정리하거나 승인·manifest 상태를 대신 변경하지 않는다.
 
 ## 금지 사항
 
