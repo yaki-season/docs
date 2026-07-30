@@ -1,9 +1,12 @@
 # 개발자 2 - 013 D1 시각 variant inventory 완전성 gate
 
-- 문서 버전: `v1.0.0`
+- 문서 버전: `v1.0.1`
 - 최종 변경일: `2026-07-31`
-- 상태: `대기`
+- 상태: `진행 중`
 - 담당자: `개발자 2`
+- 우선순위: `P1`
+- 현재 milestone에 필요한 이유: required 맥주 visual 누락 상태의 placeholder 0 false positive를 막는다.
+- 하지 않으면 막히는 stage gate: D1 placeholder 0의 신뢰성과 최초 공개 PASS
 
 ## 참조 spec
 
@@ -67,7 +70,7 @@ required visual variant 전수 집계를 공개 gate에 포함한다.
 
 ## 의존성과 인계 조건
 
-- 선행 작업: 개발자 2 작업 012
+- 선행 작업: 개발자 2 작업 012 `v1.1.0` 완료
 - 병렬 입력: Artist 3 작업 025, 통합 QA·릴리스 작업 001
 - 생산자: 개발자 2
 - 소비자: Artist 3 작업 025, QA 작업 001, PM 작업 002
@@ -86,9 +89,9 @@ required visual variant 전수 집계를 공개 gate에 포함한다.
 
 - app 구현 위치: 선행 작업 뒤 확정
 - 구현 기준 spec 버전: 위 참조 spec
-- 구현 기준 태스크 버전: `v1.0.0`
+- 구현 기준 태스크 버전: `v1.0.1`
 - 검증 방법: inventory/contract unit, 두 D1 진입점 Chromium FHD/720 harness
-- 검증 결과: 대기
+- 검증 결과: QA 재현을 수신하고 선행 작업 012 완료 뒤 착수
 - 현재 재현: assets `12/12`, reference `36/36`, D1 placeholder `33`이지만 위 세 ID는 집계 밖이라
   현재 placeholder 0 gate가 불완전하다.
 - 남은 위험: derived와 required를 근거 없이 축소해 공개 false positive를 만드는 것
@@ -98,3 +101,4 @@ required visual variant 전수 집계를 공개 gate에 포함한다.
 | 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
 |---|---|---|---|---|---|---|
 | 없음 | `v1.0.0` | `2026-07-31` | QA 재현 기반 후속 작업 생성 | `ART-003 v5.9.0`, `QA-002 v1.1.0` | 맥주 liquid·VFX·served visual의 inventory 누락과 placeholder 0 false positive를 독립 gate로 분리 | 개발자 2 작업 012 뒤 실행하고 Artist 3·QA에 자동 인계 |
+| `v1.0.0` | `v1.0.1` | `2026-07-31` | 선행 완료·자동 착수 | 동일 | 개발자 2 작업 012 `v1.1.0` 완료 뒤 같은 역할 agent에 required visual inventory 감사를 자동 인계 | QA가 보고한 최소 미집계 3건을 exact 판정·집계해야 함 |

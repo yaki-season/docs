@@ -63,8 +63,26 @@ Developer 1·2가 결정한다. 이 확인은 raw 네기마 소비 검수의 시
 - 그러나 720에서는 대파 단면·재료 방향의 반전은 보이되, 반대면이 익는 중이라고 읽히는 부분 sear는
   약하다. 5.72% pixel difference는 형상 반전 증빙일 뿐 sear 가독성의 통과 근거가 아니다. 따라서 R1은
   `not-submitted-face-signal-insufficient`이며 사용자 후보가 아니다.
-- 현재 단일 후보: 없음. PM 보고
-  `docs/inbox/99.change-request/2026-07-30_D1_cooking-second-face_R2_face-signal_PM_지시_초안.md`의
-  최소 shader/face-signal R2 교정안 승인 전에는 `proper-first-face`로 진행하지 않는다.
+- R1의 720 sear 가독성 부족에 대한 PM R2 교정 범위는 승인됐다. R1은
+  `not-submitted-face-signal-insufficient` 기록으로만 남기고 승인 후보로 재사용하지 않는다.
+- 현재 단일 후보: `MDL-NEGIMA-GRILL-COOKING-SECOND-FACE R2` station consumption.
+  경로: `art-workspace/review/artist-000/d1-cooking/grill/recomposition/cooking-second-face-station-consumption/r2/`.
+  source state SHA-256은 `5b84a68589e3948d92e17591c1c4f12f864434ca7a8ce9c76b3c38f855c67bd5`, shader module
+  SHA-256은 `a0b94cc4e8d0d34263a30eb28c33d6d543029d32e9c9260c34e120aeb32f98c9`다.
+- R2는 raw R3 공통 anchor `(609.6,515)`, scale `(1.45,1.18)`, root rotation
+  `(-0.035,0.055,0)`와 476 triangles를 고정한다. `completedFlips=1`, `rotationY=PI`,
+  `orientationFaceDown=back`, `contactFace=back`, 앞/뒤 누적 각 4초, face1 heat 0.52다.
+  imported decal 자체의 local 0–1 UV를 사용해 chicken 3개 caramel/brown cluster와 green-onion
+  2개 olive/caramel band를 shader에만 추가했다. GLB·nearest albedo는 byte-identical이며 새
+  raster·GLB·texture·atlas·bake는 없다.
+- R2 검수판: FHD `review-mdl-negima-grill-cooking-second-face-station-fhd-r2.png` SHA-256
+  `ac86c8e03f8c9bf8a91558ad4fd6b4e9fe7bcb166799588baa3400251cc3a8f7`, 720
+  `review-mdl-negima-grill-cooking-second-face-station-720-r2.png` SHA-256
+  `06df8021609eaccf9d8084d1a7cbcf5fe027f8f69b292d38e5b83fbac2cf3609`, first/second 비교판
+  SHA-256 `f06b1cd77fbe5b2f01965919373ad8a17c427eb5f2691be77930bdfecb287ae8`다. R1 대비
+  R2 screen signal은 FHD 14,891px, 720 6,609px로 검증했고 모든 alphaBBox는 raw R3 footprint와
+  동일하다.
+- R2는 `pending-user-review`, `runtimeRegistrationAllowed=false`다. 사용자 승인 전에는
+  `proper-first-face`·optimization·finalizer·runtime handoff·manifest 등록으로 진행하지 않는다.
 - 최종 소비 화면·최적화·사용자 최종 승인 전에는 runtime handoff, finalizer, manifest와
   app runtime 등록을 만들지 않는다.
