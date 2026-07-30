@@ -13,8 +13,10 @@
 | art-workspace | `main` / `b6ada20b8182` | 256 | `review/artist-000/**` Artist 1, `artist-023/**` Artist 2, `artist-025/**` Artist 3; 기존 `artist-010/**`은 승인 evidence 보존 영역 |
 
 PID가 있는 local capture/static server `8010`, `8011`, `8012`, `8777`가 실행 중이었다. Vitest,
-Playwright, promotion, finalizer process는 기준선과 targeted 검증 시작 시점에 없었다. 따라서
-`app/test-results/`(검증 뒤 1 file·4 KiB)은 삭제하지 않았고, receipt/staging도 보존했다.
+Playwright, promotion, finalizer process는 기준선과 targeted 검증 시작 시점에 없었다. targeted 검증 뒤
+`app/test-results/.last-run.json` 1 file·4 KiB(SHA-256 `91bf4caf4a6f10d368dcfc0ea4e5f73221429f7dc68ea54eb12d2a4987d9c9a3`)가
+생겼으나, ignored·자동 재생성·현재 handoff 무참조·live test 부재를 다시 확인한 뒤 정확한 `app/test-results/`
+경로만 삭제했다. 다음 Playwright 실행으로 복구되며 receipt/staging은 보존했다.
 
 ## Runtime·promotion 기준선
 
