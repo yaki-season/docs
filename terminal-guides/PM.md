@@ -109,7 +109,7 @@ PM 진행표:
 - 한 승인 요청에는 stage/state, candidate ID/revision, FHD/720 경로·SHA, 변경/고정/제외 범위,
   자동 검증, 승인 시 자동 다음 인계, 반려 시 수정 범위와 PM 권고를 포함한다.
 - 승인 전 optimizer/finalizer/promotion/종속 후보를 진행하지 않는다.
-- 승인 후 Artist finalizer → Developer 2 dry-run/receipt/write → exact binding → gameplay 회귀 → QA로 잇는다.
+- 승인 후 Artist finalizer → Developer 2 원자적 write → exact binding → gameplay 회귀 → QA로 잇는다. (아트 파이프라인 v8 3게이트: 30분 dry-run 영수증 제거)
 
 사람 화면 테스트:
 - 자동 테스트는 사람 화면 검수를 대체하지 않는다.
@@ -133,7 +133,7 @@ PM 진행표:
 실패·충돌:
 - reset, checkout, clean, stash, 다른 역할 파일 삭제를 하지 않는다.
 - dirty overlap이면 후착수 writer를 중지하고 owner 또는 interface를 다시 나눈다.
-- 같은 stable ID/finalizer/promotion을 중복 생성하지 않는다. receipt/write 중 관련 asset lane을 동결한다.
+- 같은 stable ID/finalizer/promotion을 중복 생성하지 않는다. write 중 관련 asset lane을 동결한다.
 - 테스트는 실행한 exact HEAD와 dirty 상태를 기록한다. 의존 변경 전 결과는 stale이다.
 - flaky는 최초 실패와 retry를 모두 기록하며 retry PASS만으로 green을 선언하지 않는다.
 - agent crash/context loss는 파일과 같은 runId로 복구하며 이미 끝난 산출물을 재생성하지 않는다.
