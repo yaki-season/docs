@@ -1,7 +1,5 @@
 # 개발자 2 - 011 S0 KEY 승격·화로 계약과 D1 nextAction UI
 
-- 문서 버전: `v1.1.0`
-- 최종 변경일: `2026-07-31`
 - 상태: `완료`
 - 담당자: `개발자 2`
 
@@ -102,10 +100,3 @@ binding을 완료한다. `ST-S0-BRAZIER`와 `PR-CHARCOAL-IGNITION`의 픽셀·bo
 - 남은 위험:
   - `ST-S0-BRAZIER`와 `PR-CHARCOAL-IGNITION`은 이번 작업에서 계약만 확정했다.
     Artist 제작·승인·유효 finalizer 전에는 exact placeholder와 promotion 금지를 유지한다.
-
-## 변경 이력
-
-| 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
-|---|---|---|---|---|---|---|
-| 없음 | `v1.0.0` | `2026-07-31` | 후속 작업 생성·진행 중 전환 | `ART-003 v5.9.0`, `UI-003 v1.2.0`, `GPL-004 v1.39.0` | 완료된 작업 009·010을 보존하고 KEY promotion·화로 binding 응답·nextAction UI 교정을 독립 후속 작업으로 분리 | C는 Developer 1 공개 handoff 전 구현하지 않음 |
-| `v1.0.0` | `v1.1.0` | `2026-07-31` | 구현·검증 완료 | 동일 | KEY exact promotion·FHD/720 placeholder 제거, 화로 primary/companion v1 계약, Developer 1 `nextAction` 전용 행동 문구를 완료하고 assets 12·references 36·Vitest 316·S0 30·D1 18을 통과 | 미제작 화로 두 asset은 exact placeholder를 유지하며 유효 finalizer 뒤 별도 promotion |

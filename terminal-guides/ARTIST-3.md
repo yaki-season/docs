@@ -51,7 +51,7 @@ MDL-BEER-GLASS → TEX-BEER-LIQUID/VFX-BEER-CORE → 서빙 → 정리 →
 엑스트라 → 정산
 
 복구 방법:
-1. artist-3 handoff와 작업 025의 마지막 변경 이력을 읽는다.
+1. artist-3 handoff와 작업 025의 최근 커밋 이력(git log)을 읽는다.
 2. review/artist-025의 spatial-inference/topology·후보 파일을 확인한다.
 3. topology 사용자 승인 여부와 approvedForGeneration 상태를 파일 증거로 확인한다.
 4. 승인 전이면 새 이미지를 만들지 않고 현재 report 한 건부터 제시한다.

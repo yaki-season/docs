@@ -1,7 +1,5 @@
 # 개발자 2 - 012 S0 아키 이야기 초상 binding 계약
 
-- 문서 버전: `v1.1.0`
-- 최종 변경일: `2026-07-31`
 - 상태: `완료`
 - 담당자: `개발자 2`
 - 우선순위: `P1`
@@ -101,10 +99,3 @@ runtime에서 component/state/variant, fixed camera, FHD/720 bounds, layer/zOrde
   - app 파일 SHA-256
     `da5b6ada6ad69a1d92abda02960ddd02a19b5dbc8b0fde57c78413cb8c25592d`
 - 남은 위험: Artist 2 무픽셀 preflight와 실제 초상 후보는 사용자 승인 전이며 manifest에 exact asset이 없다.
-
-## 변경 이력
-
-| 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
-|---|---|---|---|---|---|---|
-| 없음 | `v1.0.0` | `2026-07-31` | 최초 생성·착수 | `SCN-002 v1.6.0`, `UI-002 v5.25.0`, `UI-003 v1.2.0`, `ART-003 v5.9.0` | Artist 2의 유일한 S0 아키 blocker인 versioned portrait binding 계약을 독립 작업으로 생성 | 화로·숯 lane과 병렬, 실제 후보는 계약·사용자 preflight 승인 뒤 |
-| `v1.0.0` | `v1.1.0` | `2026-07-31` | 계약·검증 완료 | 동일 | exact component/source/camera/bounds/layer/DOM/표정/story-only/no-legacy 계약을 구현하고 7/7·21/21·전체 348/348·FHD/720 12/12를 통과 | Artist 2 무픽셀 preflight→사용자 승인으로 자동 인계하며 아트·manifest는 미변경 |

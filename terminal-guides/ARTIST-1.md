@@ -40,7 +40,7 @@ semanticOwner:
 - 사용자 검토 중 후보가 있는데 다음 후보 생성
 
 복구 방법:
-1. artist-1 handoff와 작업 000의 마지막 변경 이력을 읽는다.
+1. artist-1 handoff와 작업 000의 최근 커밋 이력(git log)을 읽는다.
 2. review/artist-000의 dirty·untracked 파일을 후보별로 확인한다.
 3. metadata 상태, 실제 SHA, 검수 PNG, Three.js composition 결과와 epic 기록을 대조한다.
 4. pending-user-review 후보가 있으면 새 생성 없이 그 한 후보부터 사용자에게 제시한다.

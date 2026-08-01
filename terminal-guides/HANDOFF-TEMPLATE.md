@@ -44,7 +44,7 @@
 - [ ] dashboard와 epic 상태가 이 기록보다 최신인지 확인
 - [ ] 세 저장소 branch·HEAD 확인
 - [ ] dirty·untracked 파일 실재 확인
-- [ ] 관련 spec 버전 확인
+- [ ] 관련 spec 요구사항 확인
 - [ ] 마지막 실패 재현 또는 최소 기준선 확인
 - [ ] artifact·finalizer·promotion receipt의 exact SHA 확인
 - [ ] 사용자 승인과 사람 화면 테스트 상태를 추측하지 않았는지 확인

@@ -1,7 +1,5 @@
 # 개발자 2 - 013 D1 시각 variant inventory 완전성 gate
 
-- 문서 버전: `v1.1.0`
-- 최종 변경일: `2026-07-31`
 - 상태: `완료`
 - 담당자: `개발자 2`
 - 우선순위: `P1`
@@ -105,11 +103,3 @@ required visual variant 전수 집계를 공개 gate에 포함한다.
   - required 한 건을 제외한 fixture에서 placeholder `1`을 반환한다.
   - 전체 Vitest `351/351`, D1 Chromium FHD/720 `2/2`, S0 3클릭 Chromium FHD/720 `2/2` 통과.
 - 남은 위험: 실제 liquid·VFX 픽셀과 station 소비 화면은 Artist 3 사용자 승인 뒤 별도 finalizer·promotion이 필요하다.
-
-## 변경 이력
-
-| 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
-|---|---|---|---|---|---|---|
-| 없음 | `v1.0.0` | `2026-07-31` | QA 재현 기반 후속 작업 생성 | `ART-003 v5.9.0`, `QA-002 v1.1.0` | 맥주 liquid·VFX·served visual의 inventory 누락과 placeholder 0 false positive를 독립 gate로 분리 | 개발자 2 작업 012 뒤 실행하고 Artist 3·QA에 자동 인계 |
-| `v1.0.0` | `v1.0.1` | `2026-07-31` | 선행 완료·자동 착수 | 동일 | 개발자 2 작업 012 `v1.1.0` 완료 뒤 같은 역할 agent에 required visual inventory 감사를 자동 인계 | QA가 보고한 최소 미집계 3건을 exact 판정·집계해야 함 |
-| `v1.0.1` | `v1.1.0` | `2026-07-31` | 구현·검증 완료 | `UI-003 v3.0.0`, `ART-003 v7.0.0`, `QA-002 v1.3.0` | liquid·VFX를 required, served를 derived로 판정하고 44/9/35·drink 5 집계와 false-positive 차단 테스트를 고정 | Artist 3에 exact 두 ID·state를 인계하고 QA가 전체 공개 gate를 재검증 |

@@ -1,7 +1,5 @@
 # 개발자 2 - 007 S0·D1 아트 binding inventory와 재조립 harness
 
-- 문서 버전: `v1.1.0`
-- 최종 변경일: `2026-07-30`
 - 상태: `완료`
 - 담당자: `개발자 2`
 
@@ -132,10 +130,3 @@ harness를 제공한다.
 |---|---|---|---|
 | Artist 2 / 023 | `art-workspace/review/artist-023/s0-prologue/exterior-key/preflight/topology-contract.md` | 호환 | `unassigned`였던 S0 3상태 component·variant·FHD/720 bounds·interaction·DOM safe·z-order를 contract `v1.0.0`으로 해소. 기존 `pending-user-review`·이미지 생성 금지는 유지 |
 | Artist 3 / 025 | `art-workspace/review/artist-025/preflight/bg-workspace-drink-spatial-inference-topology-r1.md` | 호환 | 같은 `1920×1080` 논리 camera와 720 `2/3 contain`, body 0, background→station→model→VFX→DOM 순서를 고정. 기존 `pending-user-approval`·runtime 등록 금지는 유지 |
-
-## 변경 이력
-
-| 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
-|---|---|---|---|---|---|---|
-| 없음 | `v1.0.0` | `2026-07-30` | 최초 생성 | `SYS-002 v3.0.0`, `UI-002 v5.25.0`, `UI-003 v1.2.0`, `ART-003 v5.8.0` | 신규 Artist 2·3이 구현 state와 FHD/720 배치를 추측하지 않도록 S0·D1 binding inventory와 재조립 harness 작업 생성 | 기존 gameplay·아트 source는 변경하지 않고 producer별 병렬 인계 계약을 추가 |
-| `v1.0.0` | `v1.1.0` | `2026-07-30` | 첫 versioned contract·harness 완료 | 참조 spec 동일, Artist 2/3 topology 읽기 전용 대조 | S0 3상태와 D1 드링크 4개 stable ID의 bounds·layer·owner, 드링크 5개 시각 variant, 실제 S0 binding 관찰과 같은 camera·DOM FHD/720 캡처를 구현. manifest·Artist source는 변경하지 않음 | Artist 2의 `exterior-key`와 Artist 3의 `BG-WORKSPACE-DRINK` topology가 더 이상 개발자 bounds 입력을 기다리지 않음 |

@@ -22,7 +22,6 @@ Developer 1·2·3, Artist 1·2·3, 통합 QA·릴리스를 역할 서브에이�
 - docs/epic/README.md
 - docs/epic/작업_현황.md
 - docs/epic/pm-orchestration/의 모든 태스크
-- docs/template/spec_epic_문서_버전_관리_지침.md
 - docs/template/AI_변경사항_반영_파이프라인.md
 - docs/template/사람_화면_플레이테스트_피드백_템플릿.md
 - docs/terminal-guides/handoffs/pm.md
@@ -97,7 +96,7 @@ PM 진행표:
 완료 이벤트 처리:
 1. agent의 완료 보고를 그대로 믿지 말고 실제 diff·epic 완료 기준·artifact SHA·테스트를 확인한다.
 2. 완료, 증거 부족, 사용자 승인 필요, 외부 blocker로 분류한다.
-3. 완료면 해당 epic 상태·버전·변경 이력, 역할 handoff, 작업_현황.md 집계를 같은 변경에서 동기화한다.
+3. 완료면 해당 epic 상태, 역할 handoff, 작업_현황.md 집계를 같은 변경에서 동기화한다.
 4. 사용자 승인 없이 진행 가능한 consumer가 있으면 같은 turn에서 즉시 follow-up 또는 다음 역할을 spawn한다.
 5. 사용자 승인이 필요하면 그 lane을 동결하고 후보 한 건의 검수 카드를 사용자에게 보고한다.
 6. promotion·binding 뒤에는 원래 gameplay owner 회귀와 QA 재검증으로 자동 인계한다.

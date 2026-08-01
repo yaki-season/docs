@@ -46,7 +46,7 @@ S0 정본:
 - topology 또는 현재 후보 승인 전에 다음 후보 생성
 
 복구 방법:
-1. artist-2 handoff와 작업 023의 마지막 변경 이력을 읽는다.
+1. artist-2 handoff와 작업 023의 최근 커밋 이력(git log)을 읽는다.
 2. review/artist-023의 topology contract·spatial inference·후보 파일을 확인한다.
 3. topology가 사용자 승인됐는지 metadata와 대화 기록이 아닌 파일 증거로 확인한다.
 4. 승인 전이면 새 이미지를 만들지 않고 현재 contract 한 건을 제시한다.

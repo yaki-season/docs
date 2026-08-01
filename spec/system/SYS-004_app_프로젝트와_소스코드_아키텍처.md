@@ -1,7 +1,5 @@
 # SYS-004 app 프로젝트와 소스코드 아키텍처
 
-- 문서 버전: `v3.1.0`
-- 최종 변경일: `2026-07-28`
 - 상태: `초안`
 - 담당 영역: `시스템`
 - 근거 inbox: `inbox/0.idea/YAKI SEASON 게임 기획서.md`, `inbox/1.design/rendering-interaction.md`, `inbox/1.design/performance.md`, `inbox/1.design/2026-07-20_야키토리_및_생맥주_직접조작_UX_시나리오_초안.md`, `inbox/2.art-concept/03_main_service_gameplay_ui.png`, `inbox/2.art-concept/09_customer_waiting_and_cleanup.png`, `inbox/2.art-concept/14_responsive_ui_station_warning.png`, `inbox/99.change-request/2026-07-19_기획서_모순_검토_원본.md`
@@ -554,12 +552,3 @@ PointerEvent
 4. JSON Schema 검증기를 운영 번들에도 남길지 검증 완료 pack에서 제거할지.
 5. D31 이후 콘텐츠 pack을 코드 배포와 분리해야 하는지.
 6. 세로 화면에서 안내만 제공할지 제한적 화면 탐색을 허용할지.
-
-## 변경 이력
-
-| 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 inbox·지문 | 변경 내용 | epic 영향 |
-|---|---|---|---|---|---|---|
-| 없음 | `v1.0.0` | `2026-07-22` | 최초 생성 | GDD·렌더링·성능·UX·모순 검토 원본과 `app@970547b` | 정식 app 기술 스택, 디렉터리, 모듈 경계, 상태·이벤트·저장·콘텐츠·렌더링·테스트 설계 | epic·task 작성 없이 설계만 추가, 구현 전 별도 영향 분석 필요 |
-| `v1.0.0` | `v2.0.0` | `2026-07-22` | 핵심 장면 아키텍처 변경 | 영업 UI `ee19d6c1...17a9`, 대기·정리 `f952c367...f594`, 반응형 `ecfe341e...7547` 재검증 | `barCounter` 전용 모듈·그룹, 셰프측 카메라 제한, 손님측·플레이어측 anchor와 서빙 경로 계약 추가 | Artist 작업 003·008과 전체 게임 소스 구현·시각 테스트 범위 변경 |
-| `v2.0.0` | `v3.0.0` | `2026-07-27` | 저장소 경계 변경 | 사용자 직접 지시 | `app/art`와 영구 캡처를 구현 저장소에서 제거하고 형제 `art-workspace`로 분리. `public/assets`를 승인 runtime의 유일한 에셋 경로로 고정하고 자동 검증·승격 명령 추가 | 진행·대기 Artist 작업의 산출 위치와 runtime 인계 절차 갱신 |
-| `v3.0.0` | `v3.1.0` | `2026-07-28` | runtime 승격 원자성·증거 계약 강화 | 사용자 대화형 승인 | finalizer 파생 handoff, stable ID/source revision/runtime build, 일회성 영수증, bundle rollback, 구현 검증용 reference image 예외와 별도 비공개 Git LFS 경계를 추가 | app은 최종 활성 runtime과 구현 검증 자료만 추적하고 수동 manifest·provenance 허용 경로를 폐지 |

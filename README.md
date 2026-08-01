@@ -81,13 +81,13 @@ flowchart TB
 |---|---|---|---|
 | 원본 입력 | 사람 | `inbox/`, `inbox/99.change-request/` | 정제하지 않은 원본을 그대로 보관하고 AI는 수정하지 않음 |
 | 원본 판별 | AI | `spec/meta/inbox_처리_이력.md` | 경로와 SHA-256 지문으로 신규·갱신·중복 원본 구분 |
-| 요구사항 정제 | AI | 카테고리별 `spec/` | 새 문서는 `v1.0.0`, 기존 문서는 변경 영향에 따라 주·부·수 버전 증가 |
-| 작업 계획 | AI | `epic/pm-orchestration/`, `epic/developer-1/`, `epic/developer-2/`, `epic/developer-3/`, `epic/artist/`, `epic/qa-release/` | 정확한 spec 버전을 참조하고 기존 태스크 갱신 또는 새 태스크 생성 |
-| 작업 현황 | AI | `epic/작업_현황.md` | 개발자별 진행·대기·보류·완료 상태와 태스크 버전 동기화 |
-| 구현·검증 | 개발자 또는 AI | `app` 저장소 | 지정된 spec·태스크 버전을 기준으로 구현하고 검증 결과 기록 |
+| 요구사항 정제 | AI | 카테고리별 `spec/` | 관련 요구사항 식별자를 갱신하거나 새 요구사항 생성 |
+| 작업 계획 | AI | `epic/pm-orchestration/`, `epic/developer-1/`, `epic/developer-2/`, `epic/developer-3/`, `epic/artist/`, `epic/qa-release/` | 요구사항 식별자를 참조하고 기존 태스크 갱신 또는 새 태스크 생성 |
+| 작업 현황 | AI | `epic/작업_현황.md` | 개발자별 진행·대기·보류·완료 상태 동기화 |
+| 구현·검증 | 개발자 또는 AI | `app` 저장소 | 지정된 spec·태스크를 기준으로 구현하고 검증 결과 기록 |
 | 재입력 | 사람 | `inbox/99.change-request/` | 구현 중 발견한 개선사항·버그·모순을 새 원본으로 기록하여 순환 재개 |
 
-세부 절차는 `template/AI_변경사항_반영_파이프라인.md`, 버전 규칙은 `template/spec_epic_문서_버전_관리_지침.md`를 따른다.
+세부 절차는 `template/AI_변경사항_반영_파이프라인.md`를 따른다. 문서 이력·버전은 git이 단일 원본이며 문서 본문에 수동 버전·변경 이력을 유지하지 않는다.
 
 ## 작성 원칙
 

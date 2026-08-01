@@ -1,7 +1,5 @@
 # 개발자 3 - 009 D1 공개용 정적 release artifact와 무주입 부팅 gate
 
-- 문서 버전: `v1.0.1`
-- 최종 변경일: `2026-07-30`
 - 상태: `완료`
 - 담당자: `개발자 3`
 
@@ -50,10 +48,3 @@
 - 검증 방법: explicit write, drift check, Python static HTTP 200 `application/json`, release unit/consumer tests, route 무주입 Chromium FHD/720 smoke, 전체 Vitest, `git diff --check`
 - 검증 결과: artifact build/check 일치; static HTTP `200`; E2E `6/6` (FHD/720 정상 2건, 404/version failure 4건); Vitest `42 files / 299 tests` 통과; diff check 통과
 - 남은 위험: production은 artifact만 소비해야 하며, artifact 갱신을 생략한 정본 변경은 check가 배포 전에 차단한다.
-
-## 변경 이력
-
-| 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
-|---|---|---|---|---|---|---|
-| 없음 | `v1.0.0` | `2026-07-30` | 최초 생성·착수 | `DAT-001 v5.23.0`, `GPL-004 v1.38.0` | D1 materialized release artifact와 무주입 정적 공개 부팅 gate를 분리 생성 | 개발자 1 production adapter가 실제 artifact만 소비하도록 handoff |
-| `v1.0.0` | `v1.0.1` | `2026-07-30` | 구현 완료 | `DAT-001 v5.23.0`, `GPL-004 v1.38.0` | canonical generator·정적 versioned artifact·top-level drift report·무주입 FHD/720 public boot 및 fallback 차단 검증을 완료 | 개발자 1은 production fallback 없이 artifact URL만 소비 |

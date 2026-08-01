@@ -57,7 +57,7 @@
 - S0+D1 placeholder 0 공개 gate
 
 완료·중단 전:
-- 담당 epic에 구현 위치·기준 버전·정확한 테스트 수·남은 placeholder·기존 독립 실패를 기록한다.
+- 담당 epic에 구현 위치·기준 spec·태스크·정확한 테스트 수·남은 placeholder·기존 독립 실패를 기록한다.
 - docs/terminal-guides/handoffs/developer-2.md에 branch/HEAD, dirty 경로, 마지막 승격/검증,
   기다리는 Artist handoff와 다음 한 동작을 기록한다.
 - app·docs commit/push는 사용자 승인과 원격 범위를 확인한 뒤 수행한다.

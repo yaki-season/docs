@@ -1,7 +1,5 @@
 # 개발자 2 - 008 S0 외관 상태별 배경 binding과 semanticOwner 정합화
 
-- 문서 버전: `v2.0.0`
-- 최종 변경일: `2026-07-30`
 - 상태: `완료`
 - 담당자: `개발자 2`
 
@@ -126,11 +124,3 @@ ID로 대조해 잘못된 owner의 promotion을 dry-run 이전에 차단한다.
 | 720 | visual `(0,0,1280,720)`, interaction `null`, DOM safe `(85,624,1109,69)` |
 | GATE 제작 입력 | 승인 `PR-SHOP-GATE-S0 / open R6`; full-frame background 재조립 |
 | 금지/검증 | KEY에 open·GATE에 closed 사용 금지, closed overlay·잔존 픽셀 금지, exact ID 없으면 `개발 중`, FHD/720 8개 통과 |
-
-## 변경 이력
-
-| 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
-|---|---|---|---|---|---|---|
-| 없음 | `v1.0.0` | `2026-07-30` | 후속 작업 생성·착수 | `SYS-002 v3.0.0`, `UI-002 v5.25.0`, `UI-003 v1.2.0`, `ART-003 v5.9.0`, Developer 2 작업 007 `v1.1.0` | 완료된 007을 수정하지 않고 S0 외관 공통 배경 binding과 cross-repo semanticOwner promotion gate를 별도 작업으로 생성 | Artist 2 background blocker를 해소하고 축약 owner로 인한 future handoff 거부를 사전에 명확화 |
-| `v1.0.0` | `v1.1.0` | `2026-07-30` | 구현·검증·완료 | 동일 | KEY/GATE shared background 계약·FHD/720 harness·fully-qualified owner registry·promotion preflight를 구현하고 전체 Vitest 271개와 관련 E2E 36개 통과 | Artist 2가 `BG-EXTERIOR-S0-CLOSED` 단일 후보를 시작할 수 있으며 잘못된 owner handoff는 receipt 전에 차단 |
-| `v1.1.0` | `v2.0.0` | `2026-07-30` | 의미 오류 breaking 정정 | 사용자 수정 계약 | shared closed 계약을 폐기하고 KEY closed·GATE open 두 exact background binding, R6 입력과 closed overlay 금지 policy, 양방향 교차 대체 방지 harness로 교체 | Artist 2는 closed 승인 뒤 gate-open full background를 별도 제작하며 기존 shared 행 사용 금지 |

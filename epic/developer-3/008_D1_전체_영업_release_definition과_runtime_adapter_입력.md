@@ -1,7 +1,5 @@
 # 개발자 3 - 008 D1 전체 영업 release definition과 runtime adapter 입력
 
-- 문서 버전: `v1.0.2`
-- 최종 변경일: `2026-07-30`
 - 상태: `완료`
 - 담당자: `개발자 3`
 
@@ -45,11 +43,3 @@
 - 검증 방법: JSON schema·정본 교차 검증·전용 fixture·전체 Vitest
 - 검증 결과: 전용 4 테스트 통과, 전체 Vitest 40 파일·293 테스트 통과
 - 남은 위험: 없음
-
-## 변경 이력
-
-| 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
-|---|---|---|---|---|---|---|
-| 없음 | `v1.0.0` | `2026-07-30` | 최초 생성·착수 | `DAT-001 v5.23.0`, `GPL-004 v1.38.0` | D1 전체 영업 release definition과 runtime adapter 입력 작업 생성 | 개발자 1의 definition adapter 소비 handoff 필요 |
-| `v1.0.0` | `v1.0.1` | `2026-07-30` | 구현 완료 | `DAT-001 v5.23.0`, `GPL-004 v1.38.0` | versioned release definition builder·Ajv schema·정상/오류 fixture·개발자 1 field handoff를 추가 | 개발자 1이 runtime adapter 입력으로 직접 소비 |
-| `v1.0.1` | `v1.0.2` | `2026-07-30` | totals 승격 | `DAT-001 v5.23.0`, `GPL-004 v1.38.0` | release definition에 작업 007 contract의 `customers=4`, `orders=4`, `items=9` totals를 명시적으로 추가 | runtime adapter가 합계를 별도 추론할 필요 없음 |

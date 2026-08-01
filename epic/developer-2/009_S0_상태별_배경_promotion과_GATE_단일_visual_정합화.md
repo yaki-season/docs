@@ -1,7 +1,5 @@
 # 개발자 2 - 009 S0 상태별 배경 promotion과 GATE 단일 visual 정합화
 
-- 문서 버전: `v1.1.0`
-- 최종 변경일: `2026-07-30`
 - 상태: `완료`
 - 담당자: `개발자 2`
 
@@ -98,10 +96,3 @@ runtime visual로 사용하며 `PR-SHOP-GATE-S0 R6`를 중복 visual layer로 �
     SHA `c97f4c435a2d5ab78e8603879dfbad79a5a4569963d939b9ae354aefb42d6f6a`
   - 두 receipt는 write 성공으로 소비됐고 `PR-SHOP-GATE-S0` manifest entry는 없다.
 - 남은 위험: 없음. Artist 2 source와 `runtimeRegistrationAllowed`는 수정하지 않았다.
-
-## 변경 이력
-
-| 이전 버전 | 새 버전 | 날짜 | 변경 유형 | 근거 spec 버전 | 변경 내용 | 재작업 영향 |
-|---|---|---|---|---|---|---|
-| 없음 | `v1.0.0` | `2026-07-30` | 후속 작업 생성·구현 | `SYS-002 v3.0.0`, `UI-002 v5.25.0`, `UI-003 v1.2.0`, `ART-003 v5.9.0` | 완료 작업 008 뒤 GATE 중복 visual을 제거하고 실제 S0 exact background resolver와 독립 promotion 대기를 구현 | handoff 전 manifest는 유지하며 작업은 `진행 중` |
-| `v1.0.0` | `v1.1.0` | `2026-07-30` | 독립 promotion·완료 | 동일 | CLOSED R2와 GATE-OPEN R1의 handoff·증빙·bundle SHA를 검증하고 각각 별도 30분 receipt로 write했다. exact state binding, placeholder 제거, PR 비시각 reference, FHD/720 34개 회귀를 확인했다. | runtime asset 11개, 두 background 승인 적용; 작업 완료 |
