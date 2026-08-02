@@ -1,5 +1,18 @@
 # 개발자 1 직전 작업 기록
 
+## 2026-08-01 task 011 자동 회귀 GREEN
+
+- 최신 runId: `DEV1-D1-011-20260801-R2`; app `main@63df61849f3bbd5e67bbbc63640febd912f7e223`
+  위 dirty 6파일이며 commit/push는 없다.
+- 시작 2칸·네기마 2개 batch·분기형 제공·순차 가이드를 구현했고 사용자 노출
+  `조립한 3개를 그릴로`를 `조립한 2개를 그릴로`로 정합했다.
+- Developer 1 검증: 전체 Vitest `364/364`, task E2E `10/10`, dirty E2E `26/26`, 관련
+  unit `59/59`, `git diff --check` PASS.
+- QA R3: 전달 SHA 6개 일치, task unit `6/6`, FHD/720 핵심·교차 E2E `24/24`, 최초
+  실패·retry·40404 `0`. 판정 GREEN.
+- 다음 인계: 실제 정적 URL/build ID와 placeholder 0을 확보한 뒤 PM→사용자 D1 첫 손님
+  화면 gate. 사람 `PASS` 전에 task 011을 완료 처리하지 않는다.
+
 ## 2026-08-01 현재 우선 계약
 
 - runId: `DEV1-D1-011-20260801-R1`; 단일 작업은 Developer 1 작업 011 `v1.2.1`.
