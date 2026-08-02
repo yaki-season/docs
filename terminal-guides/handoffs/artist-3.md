@@ -1,6 +1,6 @@
 # Artist 3 직전 작업 기록
 
-- 마지막 갱신: `2026-07-30`
+- 마지막 갱신: `2026-08-01`
 - 현재 담당: Artist 작업 025
 - 현재 알려진 checkpoint: `review/artist-025/bg-workspace-drink/r2/metadata/runtime-handoff.json`; `review/artist-025/preflight/st-drink-beer-tier-1-zero-pixel-preflight-r1.md`
 - 사용자 승인 대기: 원본 마스터·이자카야 reference를 반영한 `ST-DRINK-BEER-TIER-1 R2`의 FHD/720 소비 화면. R1은 사용자 반려로 승인 후보가 아니다. `BG-WORKSPACE-DRINK R2` 최종 소비 화면은 `2026-07-30` 승인됨.
@@ -11,6 +11,12 @@
   기존 손님 composition에서 파생하므로 별도 픽셀·manifest ID를 만들지 않는다. 다만 현재 P0는
   사용자 승인 대기 중인 `ST-DRINK-BEER-TIER-1 R2`이며, 승인 전 liquid·VFX 제작을 시작하지 않는다.
 - 현재 PM 지시: R2 픽셀·카메라·z0·DOM safe rect를 변경하지 않고 `ST-DRINK-BEER-TIER-1` 단일 후보 제작을 재개한다.
+- 2026-08-01 PM 복구: R2는 여전히 `user-review-pending; not-approved;
+  not-runtime-eligible`다. FHD SHA
+  `fe800c54daba5112248ab65eadf01321de694f2be19ff2ffccbf0f112906bf90`, 720 SHA
+  `05b8578cfe182e3bc267895143b19810f84c7d95e95bb0efa20ea70c5607c895`를 고정한다. cold brazier는
+  사용자 반려로 승인 큐에서 제거됐다. PM 정정 turn에서 다른 후보를 이어서 요청하지
+  않으며, R2 승인 전 후속 제작은 없다.
 - 마지막 완료 동작: `2026-07-30` PM indoor-only topology correction 및 사용자 최종 소비 화면 승인 뒤, R2 `a30b2d44635ba52eef5d5461d4ea9b86ea80a2ab12e47f5377b58279dddeafce`에 대해 completion → provenance → lossless optimization B1 → finalizer → runtime handoff를 생성했다. FHD `c6f2ca31ace91e7a3d5ded07fe464ff5b63c89eeeafa8287e2d43c742d93789c`, 720 `fbc5649efb36bd1e397e5f86b6605e7d443ac319de22af3d4056b0d00404b87e`; body=0, raster UI=0, station=0이다. `ST-DRINK-BEER-TIER-1`에는 pixel 0의 contract preflight만 작성했다.
 - Developer 2 promotion 결과: `BG-WORKSPACE-DRINK@R2-B1` dry-run·receipt 검증·원자적
   write·exact `drink.scene` binding 완료. runtime URL

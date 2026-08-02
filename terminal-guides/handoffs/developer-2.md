@@ -1,6 +1,6 @@
 # 개발자 2 직전 작업 기록
 
-- 마지막 갱신: `2026-07-31`
+- 마지막 갱신: `2026-08-01`
 - 현재 담당: 작업 011 `v1.1.0` 완료,
   작업 003 `v1.5.0`의 다음 승인 아트 대기와 작업 005 `v1.1.0` 공개 shell 검증 마감
 - 현재 알려진 checkpoint: `PR-SHOP-KEY@R1-B1` exact S0 KEY binding 완료,
@@ -29,6 +29,16 @@
 - 잔여 환경 위험: 로컬에 Microsoft Edge가 없어 branded Edge E2E 미실행
 - 인계 대상: Artist 2 S0 exterior 두 background 적용 완료와 Artist 3의 `BG-WORKSPACE-DRINK`
 - 주의: 유효 finalizer·dry-run 영수증 없이 write 금지, manifest 수동 편집 금지
+
+## 2026-08-01 PM 복구 checkpoint
+
+- 최신 전역 inventory는 required `44`, binding `9`, placeholder `35`, drink placeholder `5`,
+  unbound approved `0`, manifest SHA
+  `3ef18fffe69b4d447a00c1ecb99bdaf22c7e6a0848f242e3a580acf60bab13c7`다.
+- 현재 쓰기 작업은 없다. 사용자 승인→Artist finalizer가 끝난 exact handoff만 받아
+  dry-run→receipt write→exact binding을 순차 실행한다.
+- 아래 `BG-WORKSPACE-DRINK` placeholder `34→33`은 승격 당시의 역사 증거며 현재 전역
+  inventory 값으로 사용하지 않는다.
 
 ## 작업 011 KEY promotion·화로 계약·nextAction UI checkpoint
 
