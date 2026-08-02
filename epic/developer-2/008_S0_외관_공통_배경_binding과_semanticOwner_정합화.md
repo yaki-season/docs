@@ -3,6 +3,8 @@
 - 상태: `완료`
 - 담당자: `개발자 2`
 
+> ⚠ 2026-08-02 S0 점화 계약 갱신: S0 프롤로그 상호작용은 `S0-KEY-SELECT → S0-GATE-OPEN`의 2클릭(KEY→GATE)이고 숯 점화는 story dialogue로 처리한다. 아래 "S0 3상태·3클릭" 기술은 당시(구형 CHARCOAL/ignite 포함) 기준이며, 세 번째 상태와 `S0-CHARCOAL-IGNITE`는 deprecated다(app 재정합은 별도 Dev2 작업). 이 작업의 배경 binding·semanticOwner 결과는 그대로 유효하다.
+
 ## 참조 spec
 
 - `spec/system/SYS-002_2.5D_스테이션_렌더링과_레이어_계약.md` - `SYS-002` - `v3.0.0`
@@ -14,7 +16,7 @@
 
 ## 목표
 
-완료된 작업 007의 S0 3상태·3클릭 inventory를 변경하지 않고, KEY는 중앙 대문이 완전히 닫힌
+완료된 작업 007의 S0 inventory(당시 3상태·3클릭; 세 번째 CHARCOAL/ignite 상태는 2026-08-02 deprecated)를 변경하지 않고, KEY는 중앙 대문이 완전히 닫힌
 `BG-EXTERIOR-S0-CLOSED`, GATE는 동일 외관 카메라에서 중앙 개구부가 열리고 빈 실내가 보이는
 `BG-EXTERIOR-S0-GATE-OPEN`을 소비하도록 상태별 versioned background 계약을 제공한다. 동시에
 Artist metadata·binding contract·runtime inventory의 `semanticOwner`를 fully-qualified machine
@@ -39,7 +41,7 @@ ID로 대조해 잘못된 owner의 promotion을 dry-run 이전에 차단한다.
 ### 제외
 
 - 완료된 작업 007 문서·contract·harness 수정
-- S0 3클릭 gameplay·대사·campaign 상태 변경
+- S0 클릭 gameplay·대사·campaign 상태 변경 (현행 KEY→GATE 2클릭+점화 대사)
 - `game.js`, renderer, 영업 로직 — Developer 1 소유
 - `content/schema`·balance data — Developer 3 소유
 - Artist source·review binary·provenance 수정
@@ -76,7 +78,7 @@ ID로 대조해 잘못된 owner의 promotion을 dry-run 이전에 차단한다.
 - [x] 두 background의 camera·bounds·DOM safe rect는 같고 requiredAssetId는 다르다.
 - [x] KEY↔GATE background 교차 대체를 금지하고 exact ID가 없으면 placeholder를 유지한다.
 - [x] GATE는 R6 입력으로 full-frame 재조립하며 closed overlay·잔존 픽셀을 금지한다.
-- [x] 상태별 background 추가 뒤에도 S0는 3상태·3클릭이고 구형 phase는 0개다.
+- [x] 상태별 background 추가 뒤에도 S0는 당시 3상태·3클릭이고 구형 4-phase는 0개다. (현행 계약은 KEY→GATE 2상태·2클릭+점화 대사, 상단 갱신 참조)
 - [x] FHD/720에서 component·variant·visual bounds·z/layer·DOM safe·source master·body 0이 검증된다.
 - [x] placeholder/approved harness가 exact approved ID만 사용하며 가까운 자산을 대체하지 않는다.
 - [x] D1 runtime inventory에 축약 `artist-1`·`artist-3` owner가 0개다.

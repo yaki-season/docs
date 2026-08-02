@@ -3,6 +3,8 @@
 - 상태: `완료`
 - 담당자: `개발자 2`
 
+> ⚠ 2026-08-02 S0 점화 계약 갱신: S0 프롤로그의 숯 점화는 story dialogue로 처리하도록 변경되어, 이 작업이 확정한 `ST-S0-BRAZIER`·`PR-CHARCOAL-IGNITION` 화로/점화 계약은 deprecated이며 더 이상 live S0 art로 요구되지 않는다. `PR-SHOP-KEY@R1-B1` KEY 승격·binding과 D1 nextAction UI 결과는 그대로 유효하다.
+
 ## 참조 spec
 
 - `spec/art/ART-003_런타임_아트_에셋_목록과_제작_계약.md` - `ART-003` - `v5.9.0`
@@ -16,7 +18,7 @@
 
 유효 Artist 2 finalizer를 통해 `PR-SHOP-KEY@R1-B1`을 원자적으로 승격하고 exact KEY
 binding을 완료한다. `ST-S0-BRAZIER`와 `PR-CHARCOAL-IGNITION`의 픽셀·bounds·layer 소유를
-추측 없이 versioned handoff로 확정한다. Developer 1이 `slotViews().nextAction`을 공개한 뒤에는
+추측 없이 versioned handoff로 확정한다. (2026-08-02 이 화로/점화 계약은 점화 대사 대체로 deprecated — 계약 기록만 보존, live art 미요구) Developer 1이 `slotViews().nextAction`을 공개한 뒤에는
 완료된 작업 010을 다시 열지 않고 현재 행동 UI가 그 공개 필드만 소비하도록 교정한다.
 
 ## 범위
@@ -25,7 +27,7 @@ binding을 완료한다. `ST-S0-BRAZIER`와 `PR-CHARCOAL-IGNITION`의 픽셀·bo
 
 - `PR-SHOP-KEY` finalizer SHA·evidence·bundle 검증, dry-run·receipt·원자적 write
 - `PR-SHOP-KEY@R1-B1` exact resolver/inventory/S0 KEY binding과 FHD/720 placeholder 제거
-- 화로 primary/companion의 source master, pixel split, child bounds, layer, no-double-render handoff
+- 화로 primary/companion의 source master, pixel split, child bounds, layer, no-double-render handoff (deprecated 2026-08-02 · 점화 대사 대체로 live art 미요구; 계약 기록만 보존)
 - `slotViews().nextAction` 공개 뒤 `d1-game` 행동 문구와 Playwright 기대 교정
 - 관련 asset/unit/FHD/720 D1·S0 회귀
 
@@ -62,7 +64,7 @@ binding을 완료한다. `ST-S0-BRAZIER`와 `PR-CHARCOAL-IGNITION`의 픽셀·bo
 - [x] `PR-SHOP-KEY` handoff SHA와 모든 evidence/bundle SHA가 일치한다.
 - [x] dry-run receipt를 같은 handoff의 명시적 write에 한 번만 사용한다.
 - [x] `PR-SHOP-KEY@R1-B1` exact binding 뒤 KEY placeholder가 FHD/720에서 제거된다.
-- [x] 화로 계약에 요청된 모든 필드가 확정되고 `unassigned`가 0개다.
+- [x] 화로 계약에 요청된 모든 필드가 확정되고 `unassigned`가 0개다. (계약은 2026-08-02 deprecated — 점화 대사 대체, live art 미요구)
 - [x] primary/companion 중복 pixel과 runtime 이중 렌더가 계약·테스트로 차단된다.
 - [x] Developer 1 handoff 뒤 UI 행동 문구가 `nextAction`만 소비한다.
 - [x] FHD/720 S0·D1, 키보드 제공과 관련 전체 회귀가 통과한다.
@@ -99,4 +101,4 @@ binding을 완료한다. `ST-S0-BRAZIER`와 `PR-CHARCOAL-IGNITION`의 픽셀·bo
   - D1 행동·키보드 제공·영업 회귀 Chromium FHD/720: 18/18 통과
 - 남은 위험:
   - `ST-S0-BRAZIER`와 `PR-CHARCOAL-IGNITION`은 이번 작업에서 계약만 확정했다.
-    Artist 제작·승인·유효 finalizer 전에는 exact placeholder와 promotion 금지를 유지한다.
+    (2026-08-02 갱신: 두 자산 lane은 점화 대사 대체로 deprecated이며 더 이상 제작·promotion을 요구하지 않는다. 계약 기록만 보존한다.)

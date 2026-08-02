@@ -101,5 +101,5 @@ required visual variant 전수 집계를 공개 gate에 포함한다.
     아닌 derived로 판정했다.
   - D1 집계는 required `44`, approved·bound `9`, placeholder `35`, drink placeholder `5`다.
   - required 한 건을 제외한 fixture에서 placeholder `1`을 반환한다.
-  - 전체 Vitest `351/351`, D1 Chromium FHD/720 `2/2`, S0 3클릭 Chromium FHD/720 `2/2` 통과.
+  - 전체 Vitest `351/351`, D1 Chromium FHD/720 `2/2`, S0 Chromium FHD/720 `2/2` 통과. (S0 harness는 당시 3클릭 기준; 2026-08-02 갱신으로 현행 S0 계약은 KEY→GATE 2클릭이고 점화는 story dialogue, app 재정합은 별도 Dev2 작업)
 - 남은 위험: 실제 liquid·VFX 픽셀과 station 소비 화면은 Artist 3 사용자 승인 뒤 별도 finalizer·promotion이 필요하다.

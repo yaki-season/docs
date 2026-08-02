@@ -3,6 +3,8 @@
 - 상태: `완료`
 - 담당자: `개발자 2`
 
+> ⚠ 2026-08-02 S0 점화 계약 갱신: S0 프롤로그 상호작용은 `S0-KEY-SELECT → S0-GATE-OPEN`의 2클릭(KEY→GATE)이고 숯 점화는 story dialogue로 처리한다. 아래 "S0 3클릭 회귀" 기술은 당시 구현 기준이며, 세 번째 CHARCOAL/ignite 상태·`S0-CHARCOAL-IGNITE`는 deprecated다(app 재정합은 별도 Dev2 작업).
+
 ## 참조 spec
 
 - `spec/system/SYS-002_2.5D_스테이션_렌더링과_레이어_계약.md` - `SYS-002` - `v3.0.0`
@@ -36,7 +38,7 @@ runtime visual로 사용하며 `PR-SHOP-GATE-S0 R6`를 중복 visual layer로 �
 - `PR-SHOP-GATE-S0`의 별도 runtime promotion 또는 visual layer 등록
 - Artist source·review binary·provenance 수정
 - manifest 수동 편집, `runtimeRegistrationAllowed` 수동 변경, 영수증 없는 write
-- S0 3상태·3클릭 gameplay 변경
+- S0 gameplay 상태·클릭 흐름 변경 (현행 KEY→GATE 2클릭+점화 대사)
 
 ## 작업 절차
 
@@ -48,7 +50,7 @@ runtime visual로 사용하며 `PR-SHOP-GATE-S0 R6`를 중복 visual layer로 �
    없으면 해당 state placeholder를 유지하도록 연결한다.
 4. 두 finalizer handoff가 도착할 때마다 다른 항목과 receipt를 공유하지 않고
    `dry-run → receipt identity·30분 만료 검증 → 동일 receipt --write → exact binding`을 수행한다.
-5. assets/reference/unit/FHD·720 실제 S0 3클릭 회귀를 실행한다.
+5. assets/reference/unit/FHD·720 실제 S0 회귀를 실행한다. (당시 3클릭 기준; 현행 KEY→GATE 2클릭+점화 대사)
 
 ## 의존성과 인계 조건
 
@@ -81,7 +83,7 @@ runtime visual로 사용하며 `PR-SHOP-GATE-S0 R6`를 중복 visual layer로 �
   - `tests/e2e/s0-exterior-background-harness.spec.js`, `s0-d3-scenario.spec.js`
 - 구현 기준 spec 버전: 위 참조 spec
 - 구현 기준 태스크 버전: `v1.1.0`
-- 검증 방법: assets/reference, contract·owner Vitest, Chromium FHD/720 harness·실제 S0 3클릭
+- 검증 방법: assets/reference, contract·owner Vitest, Chromium FHD/720 harness·실제 S0 클릭 회귀(당시 3클릭; 현행 KEY→GATE 2클릭+점화 대사)
 - 검증 결과:
   - `npm run assets:validate`: runtime asset 11개 통과
   - `npm run visual:references:validate`: reference 36장 통과

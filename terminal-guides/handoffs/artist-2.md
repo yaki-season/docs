@@ -1,8 +1,18 @@
 # Artist 2 직전 작업 기록
 
-- 마지막 갱신: `2026-07-30`
+- 마지막 갱신: `2026-08-02`
 - 담당 역할: `Artist 2 / S0-PROLOGUE-STORY`
 - 작성한 터미널: 현재 Artist 2 복구 세션
+
+## 2026-08-02 cold R1 사용자 반려 복구
+
+- runId `ART2-S0-BRAZIER-USER-REJECTION-20260802-R2`. 2026-08-01 `pending-user-review` 복구는
+  PM이 사용자의 기존 반려를 누락한 오류였다. candidate report를
+  `rejected-by-user; do-not-resubmit`으로 정합했다.
+- candidate는 `624×432` RGBA, SHA-256
+  `df043cca7d3672e36792e3db6705a88a83a89a4fd916021f34c023605998bcbb`이다.
+- PNG는 반려 증거로만 보존한다. optimizer·FHD/720 재조립·finalizer·runtime handoff·
+  promotion·`PR-CHARCOAL-IGNITION` 입력·새 화로 source/시각 reference 재사용은 모두 금지다.
 
 ## 저장소 체크포인트
 
@@ -244,15 +254,12 @@ Chromium 1280×720/1920×1080 S0 contract·실제 시나리오·공개 전환 34
   FHD `128,936,1664,104` / 720 `85,624,1109,69`를 유지한다.
 - 투명 PNG RGBA를 검증했다. 보이는 숯·불씨·불꽃·연기·재·spark·VFX·손·도구·아키·UI는 없으며,
   `PR-CHARCOAL-IGNITION`은 companion 계약값만 보유하고 이 후보에 합성하지 않았다.
-- 현재 상태: `pending-user-review`; optimizer·FHD/720 recomposition·final approval·finalizer·runtime handoff는
-  아직 만들지 않았고 `runtimeRegistrationAllowed=false`다.
-- 다음 단일 gate: 사용자가 cold R1 단품을 승인할 때만 FHD/720 contract harness 검수로 진행한다.
+- 현재 상태: `rejected-by-user; do-not-resubmit`; `runtimeRegistrationAllowed=false`다.
+- 다음 gate: 없음. 이 revision은 반려 증거로만 보존하고 재제출·파생 금지다.
 
 ## 2026-07-31 — 비승인 철회 기록 폐기 / S0 3클릭 복구
 
 - 사용자 확정 정본은 `열쇠 선택 → 대문 열기 → 숯 점화`의 무실패 3클릭이다.
-- 위 cold R1은 다시 `pending-user-review`이며 승인 전 최적화·finalizer·runtime handoff·promotion을
-  진행하지 않는다.
-- 사용자가 cold R1을 승인하면 FHD/720 실제 소비 화면을 제출하고, 그 승인 뒤에만
-  `PR-CHARCOAL-IGNITION` 후보를 시작한다.
+- 위 2026-07-31의 `pending-user-review` 복구 기록은 2026-08-02 사용자 최신 확정으로
+  폐기됐다. cold R1은 재제출·FHD/720·점화 후보 입력 모두 금지다.
 - `CH-AKI-STORY`는 같은 Artist writer이므로 화로·점화 승인 cycle 뒤 순차 진행한다.

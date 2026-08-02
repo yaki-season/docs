@@ -3,6 +3,8 @@
 - 상태: `완료`
 - 담당자: `개발자 2`
 
+> ⚠ 2026-08-02 S0 점화 계약 갱신: S0 프롤로그 상호작용은 `S0-KEY-SELECT → S0-GATE-OPEN`의 2클릭(KEY→GATE)이고 숯 점화는 story dialogue로 처리한다. 세 번째 상태 `S0-STATE-CHARCOAL / ignite / S0-CHARCOAL-IGNITE`와 그 art `ST-S0-BRAZIER`/`PR-CHARCOAL-IGNITION`은 deprecated이며 더 이상 live S0 art로 요구되지 않는다. 아래 inventory·harness 기록은 당시 3상태 기준이다(app 재정합은 별도 Dev2 작업).
+
 ## 참조 spec
 
 - `spec/system/SYS-002_2.5D_스테이션_렌더링과_레이어_계약.md` - `SYS-002` - `v3.0.0`
@@ -22,10 +24,10 @@ harness를 제공한다.
 
 ### 포함
 
-- S0 세 상태:
+- S0 상태 (현행 계약은 아래 두 상태; 세 번째는 deprecated):
   - `S0-STATE-KEY / exterior-key / S0-KEY-SELECT`
   - `S0-STATE-GATE / gate-open / S0-GATE-OPEN`
-  - `S0-STATE-CHARCOAL / ignite / S0-CHARCOAL-IGNITE`
+  - ~~`S0-STATE-CHARCOAL / ignite / S0-CHARCOAL-IGNITE`~~ (deprecated 2026-08-02 · 점화는 story dialogue로 대체, live art 미요구)
 - S0의 `SCR-STORY-PROLOGUE`, 각 component의 required asset·variant·FHD/720
   `visualBounds`·`interactionBounds`·layer/z-order와 cover/crop 규칙
 - D1 드링크·서빙·정리·엑스트라·정산의 현재 runtime binding과 placeholder inventory
@@ -37,7 +39,7 @@ harness를 제공한다.
 ### 제외
 
 - 아트 생성·수정·승인 — Artist 2·3 책임
-- S0 대사·3클릭 상태 흐름 변경 — 완료된 개발자 2 작업 004의 계약 유지
+- S0 대사·클릭 상태 흐름 변경 — 완료된 개발자 2 작업 004의 계약 유지 (현행 KEY→GATE 2클릭+점화 대사)
 - D1 영업·정산 계산·저장 — 개발자 1 작업 009
 - manifest 승격·영수증 — 개발자 2 작업 003
 
@@ -45,7 +47,7 @@ harness를 제공한다.
 
 1. 앱의 실제 S0 interaction/state/screen/phase ID와 D1 resolver 누락 ID를 추출한다.
 2. 각 state에 단일 component ID, required asset ID·variant, 두 해상도 bounds와 layer를 부여한다.
-3. `UI-003 v1.2.0`의 3 phase와 구현의 3클릭이 1:1인지 자동 검증한다.
+3. `UI-003`의 S0 phase와 구현 클릭이 1:1인지 자동 검증한다. (당시 3 phase·3클릭 기준; 현행 계약은 KEY→GATE 2 phase·2클릭이고 점화는 대사, 상단 갱신 참조)
 4. 개발자 1 작업 009 inventory와 병합해 producer/semanticOwner별 placeholder report를 만든다.
 5. 승인 전 placeholder와 승인 후 manifest asset을 같은 camera·DOM으로 캡처하는 FHD/720 harness를 만든다.
 6. Artist 2·3에 versioned inventory를 인계하고 ID 변경 시 호환성 영향을 기록한다.
@@ -109,7 +111,7 @@ harness를 제공한다.
 |---|---|---|---|---|---|---|
 | `S0-STATE-KEY / exterior-key / S0-KEY-SELECT` | `prologue.key` | `PR-SHOP-KEY / placed` | `256,650,224,150 / 224,614,288,222` | `171,433,149,100 / 149,409,192,148` | `interactable / 40` | `128,936,1664,104 / 85,624,1109,69` |
 | `S0-STATE-GATE / gate-open / S0-GATE-OPEN` | `prologue.gate` | `PR-SHOP-GATE-S0 / open` | `656,176,608,704 / 720,224,480,624` | `437,117,405,469 / 480,149,320,416` | `architecture / 20` | `128,936,1664,104 / 85,624,1109,69` |
-| `S0-STATE-CHARCOAL / ignite / S0-CHARCOAL-IGNITE` | `prologue.brazier-and-charcoal` | `ST-S0-BRAZIER / cold-to-ignited`; companion `PR-CHARCOAL-IGNITION / off-to-stable` | `648,376,624,432 / 752,480,416,288` | `432,251,416,288 / 501,320,277,192` | `architecture / 20`; VFX `50` | `128,936,1664,104 / 85,624,1109,69` |
+| ~~`S0-STATE-CHARCOAL / ignite / S0-CHARCOAL-IGNITE`~~ (deprecated 2026-08-02 · 점화 대사 대체, live art 미요구) | `prologue.brazier-and-charcoal` | ~~`ST-S0-BRAZIER / cold-to-ignited`; companion `PR-CHARCOAL-IGNITION / off-to-stable`~~ (deprecated) | `648,376,624,432 / 752,480,416,288` | `432,251,416,288 / 501,320,277,192` | `architecture / 20`; VFX `50` | `128,936,1664,104 / 85,624,1109,69` |
 
 ### D1 드링크 첫 인계
 
