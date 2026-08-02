@@ -369,7 +369,18 @@
 
 ## 요약
 
-- **작성 패킷 22개**: D1 19종 + S0 3종 (모두 v8 `onePromptPerAsset`, 3-게이트 수용 포함). ART-003 계약 공백인 `ST-GRILL-WAITING-RACK`은 패킷 미작성·APPENDIX 플래그 처리.
+- **v9 보강 완료: 생성 대상 20개 패킷에 5필드(화면 내 구도·화합·의도·톤·one-shot 프롬프트) 추가.** = 그룹 A `SCR-SVC-CUSTOMERS` 10 + 그룹 B `SCR-SVC-DRINK` 4 + 그룹 C 숯불 계열 2 + 그룹 D UI 아틀라스 3 + 그룹 E `CH-AKI-STORY` 1. `ST-S0-BRAZIER`·`PR-CHARCOAL-IGNITION`은 DEPRECATED(2026-08-02 S0 점화 대사 대체) — 미보강·생성 금지.
+- **화합-앵커 맵(그룹별 톤을 고정하는 승인/승인후보 자산)**:
+  - A `SCR-SVC-CUSTOMERS` → 승인 런타임 `ARTIST-010-BACKGROUND-COMPLETE`(배경·중앙 대문 1점 소실점·월넛·주홍 제등·인디고 밤), `BG-SERVICE-TABLE-ARTIST009`(전폭 카운터·4 호박 hotspot·번트오렌지→월넛), `D1-TSUKIOKA-WAITING/RECEIVED-EATING`(정면 고립·정면광 storybook 인물). 합성 순서 0→4·customerOcclusionLine 준수.
+  - B `SCR-SVC-DRINK` → 승인 런타임 `BG-WORKSPACE-DRINK`(정면·하단 전폭 카운터·주홍/황동 제등·teal 병·low-key), 승인 `order-icon-draft-beer`(golden-amber·cream 거품). 셰프 옆-시점.
+  - C 숯불(그릴/마감) → 승인 후보 `bg-workspace-grill-fhd-r1`(인디고 작업면·월넛/황동 프레임), `st-grill-tier-1-fhd-r2`(검정 주철·ember underglow·3/4). 셰프 숙임-시점.
+  - D UI 아틀라스 → 승인 `order-icon-negima`/`order-icon-draft-beer` + 패널 skin `customer-order-wait-panel-skin`(다크 `#24242c~#34343e`+황동 outline)의 icon 언어. DOM `ui.frame` 16/24/32px, 색 외 실루엣·무손실.
+  - E `CH-AKI-STORY` → 초상 톤 `D1-TSUKIOKA-WAITING` + S0 세계 `BG-EXTERIOR-S0-CLOSED/GATE-OPEN`·`PR-SHOP-KEY`.
+- **작성 패킷 22개**: D1 19종 + S0 3종 (모두 v8 `onePromptPerAsset`, 3-게이트 수용 포함; v9에서 생성 대상 20개에 holistic 5필드 append). ART-003 계약 공백인 `ST-GRILL-WAITING-RACK`은 패킷 미작성·APPENDIX 플래그 처리.
+- **one-shot을 막는 spec gap(사용자/PM 결정 필요)**:
+  - `CH-AKI-STORY`(그룹 E) — **가장 큰 blocker**: runtime `componentId`·story/settlement별 sourceMasterId 규칙·FHD/720 visualBounds/interactionBounds(null 여부)·layer/zOrder·DOM safe rect·story-only guard 전부 preflight `unassigned`. Developer 2 versioned portrait binding + 사용자 preflight 승인 전에는 표정 variant 1장도 생성 금지. 톤·정체성·표정 계약은 확정이라 프롬프트는 준비됨 — 승인만 나면 즉시 1장 생성 가능.
+  - `UI-QUALITY/ECONOMY/STATE-ICONS`(그룹 D): UI atlas 전담 owner 부재(Artist 1/3 도메인 추정 배정만). owner 확정 필요 — 프롬프트 자체는 one-shot 가능.
+  - `ST-CHARCOAL-CORE`(그룹 C): 상태 mask packing → `complete-layer` vs `bundle-model` 프로필 미결(생성 톤/구도엔 영향 없음, 번들 형식만).
 - **spec gap(`unspecified` — PM/사용자 결정 필요)**:
   - `CH-AKI-STORY`: runtime componentId·sourceMasterId 규칙·FHD/720 bounds·interactionBounds·layer/zOrder·DOM safe·story-only guard 전부 `unassigned`(Developer 2 binding + preflight 승인 선행).
   - `UI-QUALITY-ICONS`·`UI-ECONOMY-ICONS`·`UI-STATE-ICONS`: Artist 1/2/3 중 UI atlas 전담 owner 부재 → owner 확정 필요(도메인 추정 배정만 함).
