@@ -316,7 +316,7 @@
 
 ## 그룹 E · `SCR-STORY-PROLOGUE` / `SCR-STORY-BEAT` 스토리 (1)
 
-> 소비 화면: `SCR-STORY-BEAT` `story.actors`(portrait 방식), `SCR-POST-SETTLEMENT` story/settlement portrait. 프롤로그 2 phase(`exterior-key`→`gate-open`)는 승인 런타임 `BG-EXTERIOR-S0-CLOSED`/`BG-EXTERIOR-S0-GATE-OPEN`(인디고-plum 밤하늘·월넛 storefront·젖은 돌바닥)이 담당. 아키 초상 톤 앵커: 승인 `D1-TSUKIOKA-WAITING`(정면 고립·부드러운 정면광·저대비 storybook 인물)의 초상 톤. **단, 아키 초상은 preflight `unassigned`로 runtime binding 미확정(아래 spec gap).**
+> 소비 화면: `SCR-STORY-BEAT` `story.actors`(portrait 방식) · `SCR-STORY-PROLOGUE` 후속 대사 `OVR-STORY-DIALOGUE` 발화자 초상 · `SCR-POST-SETTLEMENT` story/settlement portrait. 프롤로그 2 phase(`exterior-key`→`gate-open`)는 승인 런타임 `BG-EXTERIOR-S0-CLOSED`/`BG-EXTERIOR-S0-GATE-OPEN`·`PR-SHOP-KEY`(인디고-plum 밤하늘·월넛 storefront·젖은 돌바닥·호박 제등)가 담당. **2026-08-02 S0 점화가 대사-only로 바뀌면서 아키 초상이 점화-완료 서사의 중심 자산이 됨.** 아키 초상 톤 앵커: 승인 `D1-TSUKIOKA-WAITING`(정면 고립·부드러운 정면광·저대비 storybook)의 초상 톤 + S0 프롤로그 밤 세계 톤. **단, 아키 초상은 preflight `unassigned`로 runtime binding 미확정(아래 spec gap) — Developer 2 binding + 사용자 preflight 승인 전 생성 금지.**
 
 ### ST-S0-BRAZIER  [DEPRECATED 2026-08-02 · S0 점화 대사 대체 · 생성하지 않음]
 - **DEPRECATED**: 2026-08-02 S0 점화가 직접 조작 없이 `SCR-STORY-BEAT` 대사(`OVR-STORY-DIALOGUE`)로 처리됨(UI-003 L239-241). 아래 본문의 「S0 점화 KEEP·재제작」 결정은 폐기 — **이 자산은 생성하지 않는다.** 이하 내용은 이력 보존용.
