@@ -1,9 +1,21 @@
 # Artist 1 직전 작업 기록
 
-- 마지막 갱신: `2026-07-30`
+- 마지막 갱신: `2026-08-01`
 - 현재 담당: Artist 작업 000의 D1 조립·고정 6칸 그릴 model/shader 및 소비 화면 검수
 - semanticOwner: `Artist 1 / D1-ASSEMBLY-GRILL-FOOD-SHADER`
 - 수정 금지: `review/artist-023/`, `review/artist-024/`, `review/artist-025/`; D2·D3 작업 026은 시작하지 않음
+
+## 2026-08-01 v8 pipeline 정합 checkpoint
+
+- runId: `ART1-D1-V8-PROVENANCE-20260801-R1`,
+  `ART1-D1-V8-REPORT-BRIDGE-20260801-R2`.
+- provenance `14`건과 v8 profile report `6`건을 기존 승인 evidence로 정합해 validator를
+  error `23→3`, report `19→25`, provenance `38`로 개선했다. non-metadata artifact·승인 의미
+  변경은 `0`이다.
+- 남은 exact blocker: `assembly/r1` stable ID/whole-screen 의미, `finished-tray/r1` 격리
+  review board 부재, `grill/master/r3` whole-screen 승인과 v8 single-asset profile 충돌.
+- 현재 사용자 후보는 여전히 `MDL-NEGIMA-GRILL-COOKING-SECOND-FACE R2`며
+  `pending-user-review`, runtime 불가능이다.
 
 ## 확정 입력
 
