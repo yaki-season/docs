@@ -1,6 +1,6 @@
 # 기획/PM/오케스트레이터 run ledger
 
-- 마지막 갱신: `2026-08-02`
+- 마지막 갱신: `2026-08-03`
 - 담당 역할: `기획/PM/오케스트레이터`
 - 기준 dashboard: `docs/epic/작업_현황.md` 실제 epic 재집계 `45 / 11 / 6 / 0 / 2 / 26`
 - 현재 stage epic:
@@ -132,3 +132,23 @@
 - 승인 대기 후보의 metadata·finalizer·runtime 상태 선행 변경
 - 같은 역할·stable ID의 subagent 중복 spawn
 - docs/app/art-workspace의 다른 역할 dirty 변경 초기화·정리
+
+## 2026-08-03 Artist 25 전담과 그릴 초안 checkpoint
+
+- 사용자 최신 확정에 따라 외부 공동 작업자가 Artist 25 작업을 전담한다. 내부 PM·Artist 1·2 및
+  개발자 agent는 별도 사용자 인계 전 `art-workspace/review/artist-025/**`,
+  `epic/artist/025_*`, Artist 3 handoff의 producer 산출물을 쓰지 않는다.
+- Artist 1은 충돌 없는 `review/artist-000/**`만 사용한다. `ST-GRILL-TIER-1` 기존 승인 runtime
+  R2는 보존하며, R3는 `2→4→6→8` 물리적 side-cover progression을 검토하는 review-only 초안이다.
+- 그릴 초안 경로:
+  `art-workspace/review/artist-000/d1-cooking/grill/station/r3/review/review-st-grill-tier-1-growth-draft-r3.png`
+  (`1536×1024` RGB, SHA-256
+  `2da58e232b6a5ad6452188acad16320ba59796f3d7d6287b7c53bc3006cd271e`).
+- 초안 상태는 `candidate; userApproval=pending; runtimeRegistrationAllowed=false`다. RGB 2×2 보드,
+  baked charcoal, 비-FHD, alpha 없음이므로 승인 전후를 막론하고 이 보드 자체를 finalizer·optimizer·
+  promotion·manifest·binding 입력으로 사용하지 않는다.
+- 원격 반영: `app/main@2b15685`는 공동 작업자 R4 배경·U-counter·drink station과 좌석 R2·가구 없는
+  Tsukioka R3/R2/R2를 통합했다. `art-workspace/main@c756a09`는 공동 작업자 최신 `ed2b185`를
+  보존하면서 그릴 초안 커밋 `a24c382`을 포함한다.
+- 자동 검증은 app assets `23`, D1 E2E `36/36`, D3 `6/6`, 전체 Vitest `390/390`, QA GO다.
+  실제 정적 URL/build ID와 최신 Chrome·Edge FHD/720 사람 PASS는 아직 없으므로 D1 완료로 올리지 않는다.
