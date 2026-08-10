@@ -45,7 +45,7 @@
 ## 스테이지 운영
 
 - PM stage 태스크는 역할별 구현 epic을 대체하지 않고 producer→consumer 의존성과 완료 증거를 묶는다.
-- S0와 D1은 충돌 없는 lane을 병렬 실행하고 두 작업 모두 사람 `PASS`를 받은 뒤 최초 공개한다.
+- S0와 D1은 충돌 없는 lane을 병렬 실행하고, 공개 진입점의 실제 입력 핵심 경로와 사용자 노출 결함을 검증한 뒤 최초 공개한다. 사람 `PASS`는 별도 릴리스 결정에서 필수로 지정한 경우만 차단한다.
 - D2는 D1 뒤, D3는 D2 뒤 순차 실행한다.
 - 각 후보는 사용자 승인 → Artist finalizer → Developer 2 promotion/binding → gameplay 회귀 →
   QA → 사람 화면 테스트 순으로 인계한다.
